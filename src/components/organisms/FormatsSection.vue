@@ -128,18 +128,20 @@ import FormatBadge from '../atoms/FormatBadge.vue'
 
 // Omnizip archive formats - all read/write unless noted
 const archiveFormats = [
-  { name: '7z', variant: 'rw', tooltip: 'Read & Write - Solid, multi-volume' },
+  { name: '7z', variant: 'rw', tooltip: 'Read & Write - Solid, multi-volume, encryption' },
   { name: 'ZIP', variant: 'rw', tooltip: 'Read & Write - ZIP64, AES' },
   { name: 'RAR4', variant: 'rw', tooltip: 'Read & Write - STORE, FASTEST, NORMAL' },
-  { name: 'RAR5', variant: 'rw', tooltip: 'Read & Write - STORE, LZMA' },
+  { name: 'RAR5', variant: 'rw', tooltip: 'Read & Write - LZMA, solid, encryption, multi-volume' },
   { name: 'TAR', variant: 'rw', tooltip: 'Read & Write - POSIX extensions' },
   { name: 'ISO', variant: 'rw', tooltip: 'Read & Write - Rock Ridge, Joliet' },
-  { name: 'XAR', variant: 'rw', tooltip: 'Read & Write - XML TOC' },
-  { name: 'CPIO', variant: 'rw', tooltip: 'Read & Write' },
-  { name: 'XZ', variant: 'rw', tooltip: 'Read & Write - LZMA2' },
+  { name: 'XAR', variant: 'rw', tooltip: 'Read & Write - macOS packages' },
+  { name: 'RPM', variant: 'read', tooltip: 'Read - Package metadata, payload extraction' },
+  { name: 'OLE', variant: 'read', tooltip: 'Read - MS compound docs (.doc, .xls, .ppt, .msi)' },
+  { name: 'CPIO', variant: 'rw', tooltip: 'Read & Write - RPM payload support' },
+  { name: 'XZ', variant: 'rw', tooltip: 'Read & Write - LZMA2, full XZ Utils compat' },
   { name: 'GZIP', variant: 'rw', tooltip: 'Read & Write' },
   { name: 'BZIP2', variant: 'rw', tooltip: 'Read & Write' },
-  { name: 'PAR2', variant: 'rw', tooltip: 'Read & Write - Reed-Solomon' },
+  { name: 'PAR2', variant: 'rw', tooltip: 'Read & Write - Reed-Solomon error correction' },
 ]
 
 // Compression algorithms
@@ -165,7 +167,7 @@ const filters = [
 
 // Advanced features
 const advancedFeatures = [
-  'AES-256', 'CRC32', 'CRC64', 'Multi-volume', 'Solid', 'Parallel (Ractors)',
+  'AES-256', 'BLAKE2sp', 'CRC32', 'CRC64', 'SHA256', 'Multi-volume', 'Solid', 'Parallel (Ractors)',
 ]
 
 // Microsoft-specific algorithms

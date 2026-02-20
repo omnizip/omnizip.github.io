@@ -17,10 +17,10 @@
           <ProductCard
             title="Omnizip"
             subtitle="The Complete Solution"
-            description="Comprehensive compression library supporting 10+ archive formats with multiple algorithms. Full read/write support for 7z, ZIP, RAR4/RAR5, TAR, ISO, XAR, XZ, GZIP, BZIP2, CPIO, and PAR2."
+            description="Comprehensive compression library supporting 15+ archive formats with multiple algorithms. Full read/write for 7z, ZIP, RAR4/5, TAR, ISO, XAR, RPM, OLE, XZ, GZIP, BZIP2, CPIO. Features encryption, multi-volume, solid compression, and PAR2 recovery."
             emoji="📦"
             accent-color="#c5505c"
-            :formats="['7z', 'ZIP', 'RAR4', 'RAR5', 'TAR', 'ISO', 'XAR', 'XZ', 'GZIP', 'BZIP2', 'CPIO']"
+            :formats="['7z', 'ZIP', 'RAR4', 'RAR5', 'TAR', 'ISO', 'XAR', 'RPM', 'OLE', 'XZ', 'GZIP', 'BZIP2', 'CPIO', 'PAR2']"
             :docs-link="config.docs.omnizip"
             :github-link="config.github.omnizip"
           />
@@ -31,7 +31,7 @@
           <ProductCard
             title="Cabriolet"
             subtitle="Microsoft Formats"
-            description="Specialized library for Microsoft cabinet and help formats. Complete bidirectional support for CAB, CHM, SZDD, KWAJ, HLP (QuickHelp & WinHelp), LIT, and OAB."
+            description="Specialized library for Microsoft cabinet and help formats. Complete bidirectional support for CAB, CHM, SZDD, KWAJ, HLP (QuickHelp & WinHelp - exclusive!), LIT, and OAB. 1225+ tests, exceeds libmspack coverage."
             emoji="🚗"
             accent-color="#58bab7"
             :formats="['CAB', 'CHM', 'SZDD', 'KWAJ', 'HLP', 'LIT', 'OAB']"

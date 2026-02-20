@@ -38,7 +38,7 @@
 
         <FeatureCard
           title="Comprehensive Support"
-          description="Support for 10+ archive formats and 8+ compression algorithms. More comprehensive than libarchive, libmspack, or 7-zip."
+          description="Support for 15+ archive formats and 8+ compression algorithms. More comprehensive than libarchive, libmspack, or 7-zip."
           color="purple"
         >
           <template #icon>
@@ -74,7 +74,7 @@
 
         <FeatureCard
           title="Enterprise Ready"
-          description="3406 tests with 100% pass rate. PAR2 error correction, AES-256 encryption, and parallel processing support."
+          description="4700+ tests with 100% pass rate. PAR2 error correction, AES-256 encryption, multi-volume archives, and parallel processing."
           color="purple"
         >
           <template #icon>
