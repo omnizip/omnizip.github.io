@@ -17,7 +17,7 @@
           <ProductCard
             title="Omnizip"
             subtitle="The Complete Solution"
-            description="Comprehensive compression library supporting 15+ archive formats with multiple algorithms. Full read/write for 7z, ZIP, RAR4/5, TAR, ISO, XAR, RPM, OLE, XZ, GZIP, BZIP2, CPIO. Features encryption, multi-volume, solid compression, and PAR2 recovery."
+            description="Comprehensive compression library with full bidirectional support for 15+ formats. Create and extract 7z, ZIP, RAR4/5, TAR, ISO, XAR, RPM, OLE, XZ, GZIP, BZIP2, CPIO, PAR2. Features encryption, multi-volume, solid compression, and error correction."
             emoji="📦"
             accent-color="#c5505c"
             :formats="['7z', 'ZIP', 'RAR4', 'RAR5', 'TAR', 'ISO', 'XAR', 'RPM', 'OLE', 'XZ', 'GZIP', 'BZIP2', 'CPIO', 'PAR2']"
