@@ -10,19 +10,23 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden md:flex items-center gap-1">
-        <NavLink to="/" :as="RouterLink" :active="isActiveRoute('/')">
+        <router-link to="/" class="nav-link" :class="{ 'active': isActiveRoute('/') }">
           Home
-        </NavLink>
-        <NavLink :href="config.docs.omnizip">
+        </router-link>
+        <a :href="config.docs.omnizip" class="nav-link">
           Omnizip Docs
-        </NavLink>
-        <NavLink :href="config.docs.cabriolet">
+        </a>
+        <a :href="config.docs.cabriolet" class="nav-link">
           Cabriolet Docs
-        </NavLink>
-        <NavLink
+        </a>
+        <a :href="config.docs.excavate" class="nav-link">
+          Excavate Docs
+        </a>
+        <a
           :href="config.github.organization"
           target="_blank"
           rel="noopener"
+          class="nav-link"
         >
           <span class="flex items-center gap-1.5">
             <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 24 24">
@@ -30,7 +34,7 @@
             </svg>
             GitHub
           </span>
-        </NavLink>
+        </a>
       </div>
 
       <!-- Actions -->
@@ -56,22 +60,26 @@
     <transition name="slide">
       <div v-if="isMobileMenuOpen" class="md:hidden border-t border-light-border dark:border-dark-border bg-light-bg dark:bg-dark-bg">
         <div class="container-wide py-4 flex flex-col gap-1">
-          <NavLink to="/" :as="RouterLink" :active="isActiveRoute('/')" @click="closeMobileMenu">
+          <router-link to="/" class="nav-link" :class="{ 'active': isActiveRoute('/') }" @click="closeMobileMenu">
             Home
-          </NavLink>
-          <NavLink :href="config.docs.omnizip" @click="closeMobileMenu">
+          </router-link>
+          <a :href="config.docs.omnizip" class="nav-link" @click="closeMobileMenu">
             Omnizip Docs
-          </NavLink>
-          <NavLink :href="config.docs.cabriolet" @click="closeMobileMenu">
+          </a>
+          <a :href="config.docs.cabriolet" class="nav-link" @click="closeMobileMenu">
             Cabriolet Docs
-          </NavLink>
-          <NavLink
+          </a>
+          <a :href="config.docs.excavate" class="nav-link" @click="closeMobileMenu">
+            Excavate Docs
+          </a>
+          <a
             :href="config.github.organization"
             target="_blank"
             rel="noopener"
+            class="nav-link"
           >
             GitHub
-          </NavLink>
+          </a>
         </div>
       </div>
     </transition>
@@ -80,9 +88,8 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue'
-import { RouterLink, useRoute } from 'vue-router'
+import { useRoute } from 'vue-router'
 import ThemeToggle from '../atoms/ThemeToggle.vue'
-import NavLink from '../molecules/NavLink.vue'
 import Logo from '../atoms/Logo.vue'
 import config from '../../config'
 
@@ -123,6 +130,17 @@ onUnmounted(() => {
 .header-scrolled {
   @apply border-light-border dark:border-dark-border;
   @apply shadow-sm;
+}
+
+.nav-link {
+  @apply px-3 py-2 text-sm font-medium rounded-lg transition-all duration-200;
+  @apply text-light-muted dark:text-dark-muted;
+  @apply hover:text-light-text dark:hover:text-dark-text;
+  @apply hover:bg-light-surface dark:hover:bg-dark-surface;
+}
+
+.nav-link.active {
+  @apply text-brand-primary bg-brand-primary/10;
 }
 
 .slide-enter-active,
