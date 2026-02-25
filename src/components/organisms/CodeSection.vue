@@ -45,6 +45,7 @@ const activeTab = ref('omnizip')
 const tabs = [
   { id: 'omnizip', label: 'Omnizip', language: 'ruby' },
   { id: 'cabriolet', label: 'Cabriolet', language: 'ruby' },
+  { id: 'excavate', label: 'Excavate', language: 'ruby' },
 ]
 
 const codeExamples = {
@@ -90,6 +91,29 @@ end
 # Extract from OAB (Offline Address Book)
 oab = Cabriolet::Oab.open('offline.oab')
 oab.extract_all('/output/directory/')`,
+
+  excavate: `# Install the gem
+gem install excavate
+
+# Extract an archive
+require 'excavate'
+
+Excavate::Archive.new('package.zip').extract
+
+# Extract recursively (nested archives)
+Excavate::Archive.new('installer.msi').extract(
+  recursive_packages: true
+)
+
+# Extract specific files
+Excavate::Archive.new('data.tar.gz').extract(
+  files: ['config/settings.json']
+)
+
+# Filter by pattern
+Excavate::Archive.new('fonts.zip').extract(
+  filter: '**/*.ttf'
+)`,
 }
 
 const currentTab = computed(() => {

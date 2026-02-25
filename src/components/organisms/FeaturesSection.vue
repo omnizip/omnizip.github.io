@@ -62,7 +62,7 @@
 
         <FeatureCard
           title="Microsoft Formats"
-          description="Cabriolet provides complete support for CAB, CHM, SZDD, KWAJ, HLP, LIT, and OAB formats."
+          description="Cabriolet provides complete support for CAB, CHM, SZDD, KWAJ, HLP, LIT, and OAB formats with full read/write."
           color="teal"
         >
           <template #icon>

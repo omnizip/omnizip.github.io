@@ -7,12 +7,14 @@ export const config = {
   docs: {
     omnizip: 'https://www.omnizip.org/omnizip',
     cabriolet: 'https://www.omnizip.org/cabriolet',
+    excavate: 'https://omnizip.github.io/excavate',
   },
 
   // GitHub URLs
   github: {
     omnizip: 'https://github.com/omnizip/omnizip',
     cabriolet: 'https://github.com/omnizip/cabriolet',
+    excavate: 'https://github.com/omnizip/excavate',
     organization: 'https://github.com/omnizip',
   },
 
@@ -20,6 +22,7 @@ export const config = {
   rubygems: {
     omnizip: 'https://rubygems.org/gems/omnizip',
     cabriolet: 'https://rubygems.org/gems/cabriolet',
+    excavate: 'https://rubygems.org/gems/excavate',
   },
 
   // Ribose
