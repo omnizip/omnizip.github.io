@@ -1,18 +1,20 @@
 // Blog model — the single source of truth for posts.
 //
-// A post is a markdown file under src/content/blog/ with frontmatter:
+// A post is a markdown file under src/content/blog/ named {date}-{slug}.md
+// with frontmatter:
 //
 //   ---
 //   title: string (required)
-//   date: YYYY-MM-DD (required)
+//   date: YYYY-MM-DD (required; must match the filename date)
 //   excerpt: string (required)
 //   category: string (optional, defaults to "Announcement")
 //   stats: (optional) list of { value, label }
 //   ---
 //   …markdown body…
 //
-// The filename is the slug (SSOT: no slug field to drift out of sync).
-// Invalid frontmatter throws at build/dev time — content errors fail loud.
+// The filename date prefix and the slug are canonical (SSOT: the frontmatter
+// date must agree with the filename or the model throws). Invalid content
+// fails loud at build/dev time.
 
 import { load as jsYamlLoad, CORE_SCHEMA } from 'js-yaml'
 
@@ -23,10 +25,16 @@ const modules = import.meta.glob('../content/blog/*.md', {
 })
 
 const FRONTMATTER = /^---\r?\n([\s\S]*?)\r?\n---\r?\n([\s\S]*)$/
-const DATE = /^\d{4}-\d{2}-\d{2}$/
+const FILENAME = /^(\d{4}-\d{2}-\d{2})-(.+)\.md$/
 
 function parsePost(path, raw) {
   const file = path.split('/').pop()
+  const name = file.match(FILENAME)
+  if (!name) {
+    throw new Error(`blog/${file}: filename must be {{date}}-{{slug}}.md`)
+  }
+  const [, fileDate, slug] = name
+
   const match = raw.match(FRONTMATTER)
   if (!match) {
     throw new Error(`blog/${file}: missing frontmatter block`)
@@ -45,12 +53,14 @@ function parsePost(path, raw) {
       throw new Error(`blog/${file}: frontmatter field "${field}" is required`)
     }
   }
-  if (!DATE.test(meta.date)) {
-    throw new Error(`blog/${file}: date must be YYYY-MM-DD, got "${meta.date}"`)
+  if (meta.date !== fileDate) {
+    throw new Error(
+      `blog/${file}: frontmatter date "${meta.date}" does not match filename date "${fileDate}"`
+    )
   }
 
   return {
-    slug: file.replace(/\.md$/, ''),
+    slug,
     title: meta.title,
     date: meta.date,
     excerpt: meta.excerpt,
