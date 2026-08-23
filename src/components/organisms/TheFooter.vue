@@ -23,19 +23,24 @@
           </h4>
           <ul class="space-y-2">
             <li>
-              <a :href="config.docs.omnizip" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+              <router-link to="/omnizip" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
                 Omnizip
-              </a>
-            </li>
-            <li>
-              <a :href="config.docs.cabriolet" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
-                Cabriolet
-              </a>
+              </router-link>
             </li>
             <li>
               <router-link to="/rust" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
                 omnizip-rs
               </router-link>
+            </li>
+            <li>
+              <router-link to="/cabriolet" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+                Cabriolet
+              </router-link>
+            </li>
+            <li>
+              <a :href="config.docs.excavate" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+                Excavate ↗
+              </a>
             </li>
           </ul>
         </div>
@@ -46,6 +51,21 @@
             Resources
           </h4>
           <ul class="space-y-2">
+            <li>
+              <router-link to="/blog" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+                Blog
+              </router-link>
+            </li>
+            <li>
+              <a :href="config.docs.omnizip" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+                Omnizip Docs ↗
+              </a>
+            </li>
+            <li>
+              <a :href="config.docs.cabriolet" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+                Cabriolet Docs ↗
+              </a>
+            </li>
             <li>
               <a :href="config.github.organization" target="_blank" rel="noopener" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
                 GitHub

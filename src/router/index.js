@@ -27,6 +27,12 @@ const routes = [
     meta: { title: 'omnizip-rs — Pure Rust Codecs — Omnizip' },
   },
   {
+    path: '/blog',
+    name: 'BlogIndex',
+    component: () => import('../views/blog/BlogIndex.vue'),
+    meta: { title: 'Blog — Omnizip' },
+  },
+  {
     path: '/blog/omnizip-rs-announcement',
     name: 'BlogOmnizipRs',
     component: () => import('../views/blog/OmnizipRsAnnouncement.vue'),
