@@ -2,17 +2,23 @@
   <div class="product-page section-padding">
     <div class="container-narrow">
       <!-- Header -->
-      <div class="text-center mb-12">
-        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-accent-teal/20 mb-6">
-          <span class="text-3xl">🚗</span>
+      <div class="grid grid-cols-1 lg:grid-cols-[1.15fr,1fr] items-center gap-10 mb-12">
+        <div>
+          <span class="eyebrow">Pure Ruby · Microsoft formats</span>
+          <h1 class="text-4xl sm:text-5xl font-bold mt-3 mb-4 text-light-text dark:text-dark-text">
+            Cabriolet
+          </h1>
+          <p class="text-lg text-light-muted dark:text-dark-muted">
+            Pure Ruby implementation for Microsoft compression formats.
+            Complete bidirectional support for 7 Microsoft formats with all compression algorithms.
+          </p>
         </div>
-        <h1 class="text-4xl sm:text-5xl font-bold mb-4 text-light-text dark:text-dark-text">
-          Cabriolet
-        </h1>
-        <p class="text-xl text-light-muted dark:text-dark-muted max-w-2xl mx-auto">
-          Pure Ruby implementation for Microsoft compression formats.
-          Complete bidirectional support for 7 Microsoft formats with all compression algorithms.
-        </p>
+        <div class="sig-wall" aria-label="ASCII magic numbers of Microsoft compression formats">
+          <MagicPlate label="CAB" accent="teal" :tokens="['MSCF']" />
+          <MagicPlate label="CHM" accent="teal" :tokens="['ITSF']" />
+          <MagicPlate label="SZDD" accent="teal" :tokens="['SZDD']" />
+          <MagicPlate label="KWAJ" accent="teal" :tokens="['KWAJ']" />
+        </div>
       </div>
 
       <!-- Stats -->
@@ -124,10 +130,19 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
+import { useScrollAnimation } from '../composables/useScrollAnimation'
 import FormatBadge from '../components/atoms/FormatBadge.vue'
 import BaseButton from '../components/atoms/BaseButton.vue'
 import CodeBlock from '../components/molecules/CodeBlock.vue'
+import MagicPlate from '../components/molecules/MagicPlate.vue'
 import config from '../config'
+
+const { initScrollAnimation } = useScrollAnimation()
+
+onMounted(() => {
+  initScrollAnimation()
+})
 
 const features = [
   { title: 'Pure Ruby', description: 'No compilation needed, works everywhere Ruby runs' },
@@ -212,6 +227,15 @@ end`
 </script>
 
 <style scoped>
+.eyebrow {
+  @apply inline-block text-xs font-mono font-semibold uppercase tracking-widest;
+  @apply text-accent-teal;
+}
+
+.sig-wall {
+  @apply flex flex-wrap gap-3 justify-start lg:justify-end;
+}
+
 .feature-item {
   @apply flex gap-3 p-4 rounded-lg;
   @apply bg-light-surface dark:bg-dark-surface;

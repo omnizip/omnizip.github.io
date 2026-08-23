@@ -2,18 +2,32 @@
   <div class="product-page section-padding">
     <div class="container-narrow">
       <!-- Header -->
-      <div class="text-center mb-12">
-        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-accent-gold/20 mb-6">
-          <span class="text-3xl">⛏️</span>
+      <div class="grid grid-cols-1 lg:grid-cols-[1.15fr,1fr] items-center gap-10 mb-12">
+        <div>
+          <span class="eyebrow">Pure Ruby · Recursive extraction</span>
+          <h1 class="text-4xl sm:text-5xl font-bold mt-3 mb-4 text-light-text dark:text-dark-text">
+            Excavate
+          </h1>
+          <p class="text-lg text-light-muted dark:text-dark-muted">
+            Unified extraction for nested archives. Born in the Fontist project,
+            now part of the Omnizip suite — 100% pure Ruby with zero compiled
+            dependencies.
+          </p>
         </div>
-        <h1 class="text-4xl sm:text-5xl font-bold mb-4 text-light-text dark:text-dark-text">
-          Excavate
-        </h1>
-        <p class="text-xl text-light-muted dark:text-dark-muted max-w-2xl mx-auto">
-          Unified extraction for nested archives. Born in the Fontist project,
-          now part of the Omnizip suite — 100% pure Ruby with zero compiled
-          dependencies.
-        </p>
+        <div class="nest-chain" aria-label="The ZIP signature nested three levels deep — recursion is the product">
+          <div class="nest-level">
+            <MagicPlate label="archive.zip" accent="gold" :tokens="['50','4B','03','04']" />
+          </div>
+          <div class="nest-arrow" aria-hidden="true">↓</div>
+          <div class="nest-level indent-1">
+            <MagicPlate label="bundle.zip" accent="gold" :tokens="['50','4B','03','04']" />
+          </div>
+          <div class="nest-arrow indent-1" aria-hidden="true">↓</div>
+          <div class="nest-level indent-2">
+            <MagicPlate label="fonts.zip" accent="gold" :tokens="['50','4B','03','04']" />
+          </div>
+          <span class="nest-caption font-mono">the same signature, all the way down</span>
+        </div>
       </div>
 
       <!-- Stats -->
@@ -129,6 +143,7 @@ import { useScrollAnimation } from '../composables/useScrollAnimation'
 import FormatBadge from '../components/atoms/FormatBadge.vue'
 import BaseButton from '../components/atoms/BaseButton.vue'
 import CodeBlock from '../components/molecules/CodeBlock.vue'
+import MagicPlate from '../components/molecules/MagicPlate.vue'
 import config from '../config'
 
 const { initScrollAnimation } = useScrollAnimation()
@@ -179,6 +194,31 @@ Excavate::Archive.new('data.tar.gz').extract(
 </script>
 
 <style scoped>
+.eyebrow {
+  @apply inline-block text-xs font-mono font-semibold uppercase tracking-widest;
+  @apply text-accent-gold;
+}
+
+.nest-chain {
+  @apply flex flex-col items-start lg:items-end gap-1.5;
+}
+
+.indent-1 {
+  @apply ml-6 lg:ml-0 lg:mr-6;
+}
+
+.indent-2 {
+  @apply ml-12 lg:ml-0 lg:mr-12;
+}
+
+.nest-arrow {
+  @apply text-accent-gold/60 text-sm leading-none pl-2;
+}
+
+.nest-caption {
+  @apply text-[10px] uppercase tracking-widest text-light-muted dark:text-dark-muted mt-1;
+}
+
 .feature-item {
   @apply flex gap-3 p-4 rounded-lg;
   @apply bg-light-surface dark:bg-dark-surface;

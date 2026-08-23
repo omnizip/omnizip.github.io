@@ -2,17 +2,29 @@
   <div class="product-page section-padding">
     <div class="container-narrow">
       <!-- Header -->
-      <div class="text-center mb-12">
-        <div class="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-brand-primary/20 mb-6">
-          <span class="text-3xl">📦</span>
+      <div class="grid grid-cols-1 lg:grid-cols-[1.15fr,1fr] items-center gap-10 mb-12">
+        <div>
+          <span class="eyebrow">Pure Ruby · The flagship</span>
+          <h1 class="text-4xl sm:text-5xl font-bold mt-3 mb-4 text-light-text dark:text-dark-text">
+            Omnizip
+          </h1>
+          <p class="text-lg text-light-muted dark:text-dark-muted">
+            Comprehensive pure Ruby compression library with zero native dependencies.
+            Supports more formats than libarchive, libmspack, 7-zip, and xz combined.
+          </p>
         </div>
-        <h1 class="text-4xl sm:text-5xl font-bold mb-4 text-light-text dark:text-dark-text">
-          Omnizip
-        </h1>
-        <p class="text-xl text-light-muted dark:text-dark-muted max-w-2xl mx-auto">
-          Comprehensive pure Ruby compression library with zero native dependencies.
-          Supports more formats than libarchive, libmspack, 7-zip, and xz combined.
-        </p>
+        <div class="sig-wall" aria-label="File signature magic numbers of supported formats">
+          <MagicPlate label="7z" :tokens="['37','7A','BC','AF','27','1C']" />
+          <MagicPlate label="ZIP" :tokens="['50','4B','03','04']" />
+          <MagicPlate label="RAR" :tokens="['52','61','72','21']" />
+          <MagicPlate label="XZ" :tokens="['FD','37','7A','58','5A']" />
+          <MagicPlate label="GZIP" :tokens="['1F','8B']" />
+          <MagicPlate label="BZIP2" :tokens="['42','5A','68']" />
+          <MagicPlate label="RPM" :tokens="['ED','AB','EE','DB']" />
+          <MagicPlate label="XAR" :tokens="['78','61','72','21']" />
+          <MagicPlate label="OLE" :tokens="['D0','CF','11','E0']" />
+          <MagicPlate label="CPIO" :tokens="['30','37','30','37']" />
+        </div>
       </div>
 
       <!-- Stats -->
@@ -147,10 +159,19 @@
 </template>
 
 <script setup>
+import { onMounted } from 'vue'
+import { useScrollAnimation } from '../composables/useScrollAnimation'
 import FormatBadge from '../components/atoms/FormatBadge.vue'
 import BaseButton from '../components/atoms/BaseButton.vue'
 import CodeBlock from '../components/molecules/CodeBlock.vue'
+import MagicPlate from '../components/molecules/MagicPlate.vue'
 import config from '../config'
+
+const { initScrollAnimation } = useScrollAnimation()
+
+onMounted(() => {
+  initScrollAnimation()
+})
 
 const features = [
   { title: 'Pure Ruby', description: 'No native dependencies. Works on MRI, JRuby, TruffleRuby' },
@@ -225,6 +246,15 @@ entries = Omnizip.list_archive('archive.zip')`
 </script>
 
 <style scoped>
+.eyebrow {
+  @apply inline-block text-xs font-mono font-semibold uppercase tracking-widest;
+  @apply text-brand-primary;
+}
+
+.sig-wall {
+  @apply flex flex-wrap gap-2 justify-start lg:justify-end;
+}
+
 .feature-item {
   @apply flex gap-3 p-4 rounded-lg;
   @apply bg-light-surface dark:bg-dark-surface;

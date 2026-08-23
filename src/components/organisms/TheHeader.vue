@@ -184,6 +184,7 @@ onUnmounted(() => {
   @apply text-light-muted dark:text-dark-muted;
   @apply hover:text-light-text dark:hover:text-dark-text;
   @apply hover:bg-light-surface dark:hover:bg-dark-surface;
+  @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-brand-primary/50;
 }
 
 .nav-link.active {
