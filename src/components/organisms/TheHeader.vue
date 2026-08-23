@@ -10,22 +10,33 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center gap-1">
+        <!-- Site + products (internal) -->
         <router-link to="/" class="nav-link" :class="{ 'active': isActiveRoute('/') }">
           Home
+        </router-link>
+        <router-link to="/omnizip" class="nav-link" :class="{ 'active': isActiveRoute('/omnizip') }">
+          Omnizip
         </router-link>
         <router-link to="/rust" class="nav-link" :class="{ 'active': isActiveRoute('/rust') }">
           omnizip-rs
         </router-link>
-        <router-link to="/blog/omnizip-rs-announcement" class="nav-link" :class="{ 'active': isActiveRoute('/blog/omnizip-rs-announcement') }">
+        <router-link to="/cabriolet" class="nav-link" :class="{ 'active': isActiveRoute('/cabriolet') }">
+          Cabriolet
+        </router-link>
+        <router-link to="/blog" class="nav-link" :class="{ 'active': isActiveRoute('/blog') }">
           Blog
         </router-link>
-        <a :href="config.docs.omnizip" class="nav-link">
+
+        <span class="nav-divider" aria-hidden="true" />
+
+        <!-- External documentation -->
+        <a :href="config.docs.omnizip" class="nav-link nav-external">
           Omnizip Docs
         </a>
-        <a :href="config.docs.cabriolet" class="nav-link">
+        <a :href="config.docs.cabriolet" class="nav-link nav-external">
           Cabriolet Docs
         </a>
-        <a :href="config.docs.excavate" class="nav-link">
+        <a :href="config.docs.excavate" class="nav-link nav-external">
           Excavate Docs
         </a>
         <a
@@ -69,19 +80,26 @@
           <router-link to="/" class="nav-link" :class="{ 'active': isActiveRoute('/') }" @click="closeMobileMenu">
             Home
           </router-link>
+          <router-link to="/omnizip" class="nav-link" :class="{ 'active': isActiveRoute('/omnizip') }" @click="closeMobileMenu">
+            Omnizip
+          </router-link>
           <router-link to="/rust" class="nav-link" :class="{ 'active': isActiveRoute('/rust') }" @click="closeMobileMenu">
             omnizip-rs
           </router-link>
-          <router-link to="/blog/omnizip-rs-announcement" class="nav-link" :class="{ 'active': isActiveRoute('/blog/omnizip-rs-announcement') }" @click="closeMobileMenu">
+          <router-link to="/cabriolet" class="nav-link" :class="{ 'active': isActiveRoute('/cabriolet') }" @click="closeMobileMenu">
+            Cabriolet
+          </router-link>
+          <router-link to="/blog" class="nav-link" :class="{ 'active': isActiveRoute('/blog') }" @click="closeMobileMenu">
             Blog
           </router-link>
-          <a :href="config.docs.omnizip" class="nav-link" @click="closeMobileMenu">
+          <div class="nav-divider !h-px !w-auto my-2" aria-hidden="true" />
+          <a :href="config.docs.omnizip" class="nav-link nav-external" @click="closeMobileMenu">
             Omnizip Docs
           </a>
-          <a :href="config.docs.cabriolet" class="nav-link" @click="closeMobileMenu">
+          <a :href="config.docs.cabriolet" class="nav-link nav-external" @click="closeMobileMenu">
             Cabriolet Docs
           </a>
-          <a :href="config.docs.excavate" class="nav-link" @click="closeMobileMenu">
+          <a :href="config.docs.excavate" class="nav-link nav-external" @click="closeMobileMenu">
             Excavate Docs
           </a>
           <a
@@ -110,6 +128,9 @@ const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
 
 const isActiveRoute = (path) => {
+  if (path === '/blog') {
+    return route.path === '/blog' || route.path.startsWith('/blog/')
+  }
   return route.path === path
 }
 
@@ -153,6 +174,16 @@ onUnmounted(() => {
 
 .nav-link.active {
   @apply text-brand-primary bg-brand-primary/10;
+}
+
+.nav-divider {
+  @apply h-5 w-px mx-2;
+  @apply bg-light-border dark:bg-dark-border;
+}
+
+.nav-external::after {
+  content: '↗';
+  @apply ml-1 text-[10px] opacity-60;
 }
 
 .slide-enter-active,
