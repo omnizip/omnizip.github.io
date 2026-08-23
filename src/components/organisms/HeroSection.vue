@@ -20,12 +20,12 @@
 
       <!-- Tagline -->
       <h1 class="text-4xl sm:text-5xl md:text-6xl font-bold mb-4 text-light-text dark:text-dark-text">
-        <span class="gradient-text">Pure Ruby</span> Compression
+        <span class="gradient-text">Pure Ruby &amp; Rust</span> Compression
       </h1>
 
       <!-- Subtitle -->
       <p class="text-lg sm:text-xl text-light-muted dark:text-dark-muted mb-8 max-w-2xl mx-auto">
-        Zero native dependencies. Works everywhere Ruby runs.
+        Zero native dependencies. Zero unsafe code.
         <br class="hidden sm:block" />
         Supporting more formats than libarchive, libmspack, 7-zip, and xz.
       </p>

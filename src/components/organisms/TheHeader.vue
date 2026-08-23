@@ -9,9 +9,15 @@
       </router-link>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center gap-1">
+      <div class="hidden lg:flex items-center gap-1">
         <router-link to="/" class="nav-link" :class="{ 'active': isActiveRoute('/') }">
           Home
+        </router-link>
+        <router-link to="/rust" class="nav-link" :class="{ 'active': isActiveRoute('/rust') }">
+          omnizip-rs
+        </router-link>
+        <router-link to="/blog/omnizip-rs-announcement" class="nav-link" :class="{ 'active': isActiveRoute('/blog/omnizip-rs-announcement') }">
+          Blog
         </router-link>
         <a :href="config.docs.omnizip" class="nav-link">
           Omnizip Docs
@@ -43,7 +49,7 @@
 
         <!-- Mobile menu button -->
         <button
-          class="md:hidden p-2 rounded-lg text-light-muted dark:text-dark-muted hover:bg-light-surface dark:hover:bg-dark-surface"
+          class="lg:hidden p-2 rounded-lg text-light-muted dark:text-dark-muted hover:bg-light-surface dark:hover:bg-dark-surface"
           @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
           <svg v-if="!isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -58,10 +64,16 @@
 
     <!-- Mobile Navigation -->
     <transition name="slide">
-      <div v-if="isMobileMenuOpen" class="md:hidden border-t border-light-border dark:border-dark-border bg-light-bg dark:bg-dark-bg">
+      <div v-if="isMobileMenuOpen" class="lg:hidden border-t border-light-border dark:border-dark-border bg-light-bg dark:bg-dark-bg">
         <div class="container-wide py-4 flex flex-col gap-1">
           <router-link to="/" class="nav-link" :class="{ 'active': isActiveRoute('/') }" @click="closeMobileMenu">
             Home
+          </router-link>
+          <router-link to="/rust" class="nav-link" :class="{ 'active': isActiveRoute('/rust') }" @click="closeMobileMenu">
+            omnizip-rs
+          </router-link>
+          <router-link to="/blog/omnizip-rs-announcement" class="nav-link" :class="{ 'active': isActiveRoute('/blog/omnizip-rs-announcement') }" @click="closeMobileMenu">
+            Blog
           </router-link>
           <a :href="config.docs.omnizip" class="nav-link" @click="closeMobileMenu">
             Omnizip Docs

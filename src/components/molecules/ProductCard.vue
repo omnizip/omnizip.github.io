@@ -39,9 +39,9 @@
       <slot name="actions">
         <div class="flex gap-3">
           <BaseButton
-            :as="docsLink ? 'a' : 'router-link'"
-            :href="docsLink"
-            :to="docsLink ? null : '#'"
+            :as="isInternal ? 'router-link' : 'a'"
+            :href="isInternal ? null : docsLink"
+            :to="isInternal ? docsLink : null"
             variant="primary"
             size="sm"
           >
@@ -64,10 +64,11 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import FormatBadge from '../atoms/FormatBadge.vue'
 import BaseButton from '../atoms/BaseButton.vue'
 
-defineProps({
+const props = defineProps({
   title: {
     type: String,
     required: true,
@@ -101,6 +102,8 @@ defineProps({
     default: '',
   },
 })
+
+const isInternal = computed(() => props.docsLink.startsWith('/'))
 </script>
 
 <style scoped>

@@ -55,7 +55,7 @@ archive.extract_all('/output/')</code></pre>
       </div>
 
       <!-- CTA -->
-      <div class="mt-12 text-center">
+      <div class="mt-12 text-center flex flex-col sm:flex-row items-center justify-center gap-4">
         <BaseButton
           as="a"
           :href="config.docs.omnizip"
@@ -63,6 +63,14 @@ archive.extract_all('/output/')</code></pre>
           size="lg"
         >
           Read the Documentation
+        </BaseButton>
+        <BaseButton
+          as="router-link"
+          to="/rust"
+          variant="secondary"
+          size="lg"
+        >
+          Start with Rust
         </BaseButton>
       </div>
     </div>

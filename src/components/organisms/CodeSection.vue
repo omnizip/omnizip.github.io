@@ -44,6 +44,7 @@ const activeTab = ref('omnizip')
 
 const tabs = [
   { id: 'omnizip', label: 'Omnizip', language: 'ruby' },
+  { id: 'rust', label: 'omnizip-rs', language: 'rust' },
   { id: 'cabriolet', label: 'Cabriolet', language: 'ruby' },
   { id: 'excavate', label: 'Excavate', language: 'ruby' },
 ]
@@ -69,6 +70,34 @@ end
 
 # Extract specific files
 archive.extract('document.pdf', '/output/path/')`,
+
+  rust: `# Add the codecs you need
+cargo add omnizip-lzma omnizip-zstd omnizip-codecs
+
+use omnizip_codecs::{CodecId, CodecRegistry, CompressionLevel};
+use omnizip_lzma::LzmaCodec;
+use omnizip_zstd::{ZstdCodec, ZstdLevel};
+
+// One-liner per format
+let zst = omnizip_zstd::compress(data, ZstdLevel::Default)?;
+let xz = omnizip_lzma::xz_compress(data, 6)?;
+
+// Or register codecs and dispatch by id
+let mut registry = CodecRegistry::new();
+registry.register(Box::new(ZstdCodec::new()));
+registry.register(Box::new(LzmaCodec::new()));
+
+let compressed = registry.compress(
+    CodecId::ZSTD, data, CompressionLevel::new(9))?;
+let original = registry.decompress(
+    CodecId::ZSTD, &compressed, data.len() as u32)?;
+
+// Byte-deterministic: the same input and level
+// always produce the identical output.
+assert_eq!(
+    registry.compress(CodecId::ZSTD, data, CompressionLevel::new(9))?,
+    compressed,
+);`,
 
   cabriolet: `# Install the gem
 gem install cabriolet

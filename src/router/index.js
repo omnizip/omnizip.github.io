@@ -6,16 +6,35 @@ const routes = [
     path: '/',
     name: 'Home',
     component: Home,
+    meta: { title: 'Omnizip — Pure Ruby & Rust Compression' },
   },
   {
     path: '/omnizip',
     name: 'Omnizip',
     component: () => import('../views/OmnizipPage.vue'),
+    meta: { title: 'Omnizip (Ruby) — Omnizip' },
   },
   {
     path: '/cabriolet',
     name: 'Cabriolet',
     component: () => import('../views/CabrioletPage.vue'),
+    meta: { title: 'Cabriolet — Omnizip' },
+  },
+  {
+    path: '/rust',
+    name: 'Rust',
+    component: () => import('../views/RustPage.vue'),
+    meta: { title: 'omnizip-rs — Pure Rust Codecs — Omnizip' },
+  },
+  {
+    path: '/blog/omnizip-rs-announcement',
+    name: 'BlogOmnizipRs',
+    component: () => import('../views/blog/OmnizipRsAnnouncement.vue'),
+    meta: { title: 'Announcing omnizip-rs — Omnizip' },
+  },
+  {
+    path: '/:pathMatch(.*)*',
+    redirect: '/',
   },
 ]
 
@@ -35,6 +54,10 @@ const router = createRouter({
       return { top: 0 }
     }
   },
+})
+
+router.afterEach((to) => {
+  document.title = to.meta.title || 'Omnizip'
 })
 
 export default router
