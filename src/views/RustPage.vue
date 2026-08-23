@@ -108,7 +108,7 @@
             One crate per algorithm
           </h2>
           <p class="text-light-muted dark:text-dark-muted max-w-2xl mx-auto">
-            All published to crates.io at v0.16.88, dual licensed MIT OR Apache-2.0.
+            All published to crates.io at v0.16.89, dual licensed MIT OR Apache-2.0.
             Add exactly what you need &mdash; codecs never depend on each other.
           </p>
         </div>
@@ -299,7 +299,7 @@ const stats = [
   { value: '18', label: 'codec crates' },
   { value: '0', label: 'unsafe blocks' },
   { value: '100%', label: 'deterministic encodes' },
-  { value: 'v0.16.88', label: 'live on crates.io' },
+  { value: 'v0.16.89', label: 'live on crates.io' },
   { value: '97k+', label: 'crate downloads' },
   { value: 'MIT/Apache', label: 'dual licensed' },
 ]

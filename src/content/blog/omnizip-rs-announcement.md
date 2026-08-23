@@ -1,7 +1,7 @@
 ---
 title: omnizip-rs is here — 18 pure Rust compression crates, verified against Ruby, live on crates.io
 date: 2026-08-23
-excerpt: "The Omnizip family just grew a Rust wing. Every major codec from the Ruby reference — LZMA, ZSTD, Brotli, bzip2, PPMd, ZPAQ and a dozen more — now ships as a pure Rust crate with zero unsafe code, zero native dependencies, and byte-identical output on every machine. Today we're announcing general availability at v0.16.88, with the full benchmark story below."
+excerpt: "The Omnizip family just grew a Rust wing. Every major codec from the Ruby reference — LZMA, ZSTD, Brotli, bzip2, PPMd, ZPAQ and a dozen more — now ships as a pure Rust crate with zero unsafe code, zero native dependencies, and byte-identical output on every machine. Today we're announcing general availability at v0.16.89, with the full benchmark story below."
 stats:
   - value: 18
     label: crates on crates.io
@@ -9,7 +9,7 @@ stats:
     label: unsafe blocks, workspace-wide
   - value: 100%
     label: deterministic encodes
-  - value: v0.16.88
+  - value: v0.16.89
     label: released today
 ---
 
@@ -93,6 +93,8 @@ clean round-trips.
 `Apple M1 Max · rustc stable · release profile · single thread · best-of-N · deterministic: true, round-trip: ok on every row`
 
 `Results updated after the LZMA2 scale fix (0.16.87) and the ZSTD literals fix (0.16.88); the lzma and zstd 19/22 rows were measured on the fixed releases.`
+
+`0.16.89: fixed external xz interop on mixed content (#329) — a conformance fix; measured ratios are unchanged.`
 
 ### The roadmap fine print
 
@@ -219,7 +221,7 @@ and the Rust side follows — and vice versa. Two implementations, one truth.
 
 ## Get it
 
-All 18 crates are live on crates.io at v0.16.88, dual-licensed
+All 18 crates are live on crates.io at v0.16.89, dual-licensed
 MIT OR Apache-2.0, MSRV 1.75. API documentation is on docs.rs, and the
 repository — including every benchmark script — is public.
 
