@@ -1,7 +1,7 @@
 ---
 title: omnizip-rs is here — 18 pure Rust compression crates, verified against Ruby, live on crates.io
 date: 2026-08-23
-excerpt: "The Omnizip family just grew a Rust wing. Every major codec from the Ruby reference — LZMA, ZSTD, Brotli, bzip2, PPMd, ZPAQ and a dozen more — now ships as a pure Rust crate with zero unsafe code, zero native dependencies, and byte-identical output on every machine. Today we're announcing general availability at v0.16.85, with the full benchmark story below."
+excerpt: "The Omnizip family just grew a Rust wing. Every major codec from the Ruby reference — LZMA, ZSTD, Brotli, bzip2, PPMd, ZPAQ and a dozen more — now ships as a pure Rust crate with zero unsafe code, zero native dependencies, and byte-identical output on every machine. Today we're announcing general availability at v0.16.88, with the full benchmark story below."
 stats:
   - value: 18
     label: crates on crates.io
@@ -9,7 +9,7 @@ stats:
     label: unsafe blocks, workspace-wide
   - value: 100%
     label: deterministic encodes
-  - value: v0.16.85
+  - value: v0.16.88
     label: released today
 ---
 
@@ -69,18 +69,21 @@ numbers land with the expanded public benchmark suite shortly after this
 post — measured, not estimated. What's in the table is what ran, exactly
 as measured.
 
-The headline numbers: **31.5%** best measured ratio (bzip2/9), **145 MiB/s**
-fastest decode (lz4/12), and **100%** of measured cases deterministic with
+The headline numbers: **31.5%** best measured ratio (bzip2/9), **149 MiB/s**
+fastest decode (zstd/19), and **100%** of measured cases deterministic with
 clean round-trips.
 
 | Codec | Level | Output | Ratio | Encode | Decode |
 |---|---:|---:|---:|---:|---:|
 | bzip2 | 9 | 31,527,197 B | 31.5% | 0.9 MiB/s | 1.5 MiB/s |
 | ppmd7 | 9 | 32,500,082 B | 32.5% | 1.1 MiB/s | 1.1 MiB/s |
+| lzma (xz) | 6 | 35,650,060 B | 35.7% | 0.2 MiB/s | 46.4 MiB/s |
 | ppmd8 | 9 | 42,611,479 B | 42.6% | 0.6 MiB/s | 0.7 MiB/s |
 | lz4hc | 3 | 43,047,875 B | 43.0% | 5.2 MiB/s | 117.2 MiB/s |
 | lz4hc | 9 | 43,047,875 B | 43.0% | 3.6 MiB/s | 70.5 MiB/s |
 | lz4hc | 12 | 43,047,875 B | 43.0% | 3.4 MiB/s | 84.7 MiB/s |
+| zstd | 22 | 43,630,876 B | 43.6% | 0.3 MiB/s | 79.4 MiB/s |
+| zstd | 19 | 45,167,014 B | 45.2% | 30.8 MiB/s | 149.2 MiB/s |
 | zstd | 3 | 46,486,322 B | 46.5% | 15.1 MiB/s | 57.3 MiB/s |
 | snappy | 1 | 52,792,256 B | 52.8% | 31.3 MiB/s | 88.3 MiB/s |
 | lz4 | 1 | 53,006,804 B | 53.0% | 51.9 MiB/s | 130.9 MiB/s |
@@ -88,6 +91,8 @@ clean round-trips.
 | lz4 | 12 | 53,006,804 B | 53.0% | 73.1 MiB/s | 145.0 MiB/s |
 
 `Apple M1 Max · rustc stable · release profile · single thread · best-of-N · deterministic: true, round-trip: ok on every row`
+
+`Results updated after the LZMA2 scale fix (0.16.87) and the ZSTD literals fix (0.16.88); the lzma and zstd 19/22 rows were measured on the fixed releases.`
 
 ### The roadmap fine print
 
@@ -214,7 +219,7 @@ and the Rust side follows — and vice versa. Two implementations, one truth.
 
 ## Get it
 
-All 18 crates are live on crates.io at v0.16.85, dual-licensed
+All 18 crates are live on crates.io at v0.16.88, dual-licensed
 MIT OR Apache-2.0, MSRV 1.75. API documentation is on docs.rs, and the
 repository — including every benchmark script — is public.
 
