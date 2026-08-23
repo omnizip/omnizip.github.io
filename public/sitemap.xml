@@ -2,6 +2,12 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url><loc>https://www.omnizip.org/</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://www.omnizip.org/rust</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.omnizip.org/ruby/omnizip</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.omnizip.org/ruby/cabriolet</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.omnizip.org/ruby/excavate</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://www.omnizip.org/blog</loc><changefreq>weekly</changefreq></url>
   <url><loc>https://www.omnizip.org/blog/omnizip-rs-announcement</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.omnizip.org/blog/excavate-adoption</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.omnizip.org/blog/cabriolet-availability</loc><changefreq>monthly</changefreq></url>
+  <url><loc>https://www.omnizip.org/blog/omnizip-introduction</loc><changefreq>monthly</changefreq></url>
 </urlset>

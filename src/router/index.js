@@ -9,17 +9,29 @@ const routes = [
     meta: { title: 'Omnizip — Pure Ruby & Rust Compression' },
   },
   {
-    path: '/omnizip',
+    path: '/ruby/omnizip',
     name: 'Omnizip',
     component: () => import('../views/OmnizipPage.vue'),
     meta: { title: 'Omnizip (Ruby) — Omnizip' },
   },
   {
-    path: '/cabriolet',
+    path: '/ruby/cabriolet',
     name: 'Cabriolet',
     component: () => import('../views/CabrioletPage.vue'),
     meta: { title: 'Cabriolet — Omnizip' },
   },
+  {
+    path: '/ruby/excavate',
+    name: 'Excavate',
+    component: () => import('../views/ExcavatePage.vue'),
+    meta: { title: 'Excavate — Omnizip' },
+  },
+  // Bare repo-name paths are owned in production by the org's docs sites
+  // (GitHub Pages serves them at /<repo>/), so the SPA pages live under
+  // /ruby/. These redirects keep pre-existing in-app links working.
+  { path: '/omnizip', redirect: '/ruby/omnizip' },
+  { path: '/cabriolet', redirect: '/ruby/cabriolet' },
+  { path: '/excavate', redirect: '/ruby/excavate' },
   {
     path: '/rust',
     name: 'Rust',
@@ -33,10 +45,10 @@ const routes = [
     meta: { title: 'Blog — Omnizip' },
   },
   {
-    path: '/blog/omnizip-rs-announcement',
-    name: 'BlogOmnizipRs',
-    component: () => import('../views/blog/OmnizipRsAnnouncement.vue'),
-    meta: { title: 'Announcing omnizip-rs — Omnizip' },
+    path: '/blog/:slug',
+    name: 'BlogPost',
+    component: () => import('../views/blog/BlogPost.vue'),
+    meta: { title: 'Blog — Omnizip' },
   },
   {
     path: '/:pathMatch(.*)*',

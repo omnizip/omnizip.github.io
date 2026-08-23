@@ -10,35 +10,19 @@
 
       <!-- Desktop Navigation -->
       <div class="hidden lg:flex items-center gap-1">
-        <!-- Site + products (internal) -->
         <router-link to="/" class="nav-link" :class="{ 'active': isActiveRoute('/') }">
           Home
         </router-link>
-        <router-link to="/omnizip" class="nav-link" :class="{ 'active': isActiveRoute('/omnizip') }">
-          Omnizip
-        </router-link>
-        <router-link to="/rust" class="nav-link" :class="{ 'active': isActiveRoute('/rust') }">
-          omnizip-rs
-        </router-link>
-        <router-link to="/cabriolet" class="nav-link" :class="{ 'active': isActiveRoute('/cabriolet') }">
-          Cabriolet
-        </router-link>
+
+        <NavDropdown label="Ruby" :items="rubyItems" :active="rubyActive" />
+        <NavDropdown label="Rust" :items="rustItems" :active="rustActive" />
+
         <router-link to="/blog" class="nav-link" :class="{ 'active': isActiveRoute('/blog') }">
           Blog
         </router-link>
 
         <span class="nav-divider" aria-hidden="true" />
 
-        <!-- External documentation -->
-        <a :href="config.docs.omnizip" class="nav-link nav-external">
-          Omnizip Docs
-        </a>
-        <a :href="config.docs.cabriolet" class="nav-link nav-external">
-          Cabriolet Docs
-        </a>
-        <a :href="config.docs.excavate" class="nav-link nav-external">
-          Excavate Docs
-        </a>
         <a
           :href="config.github.organization"
           target="_blank"
@@ -61,6 +45,8 @@
         <!-- Mobile menu button -->
         <button
           class="lg:hidden p-2 rounded-lg text-light-muted dark:text-dark-muted hover:bg-light-surface dark:hover:bg-dark-surface"
+          :aria-expanded="isMobileMenuOpen ? 'true' : 'false'"
+          aria-label="Toggle menu"
           @click="isMobileMenuOpen = !isMobileMenuOpen"
         >
           <svg v-if="!isMobileMenuOpen" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -80,28 +66,32 @@
           <router-link to="/" class="nav-link" :class="{ 'active': isActiveRoute('/') }" @click="closeMobileMenu">
             Home
           </router-link>
-          <router-link to="/omnizip" class="nav-link" :class="{ 'active': isActiveRoute('/omnizip') }" @click="closeMobileMenu">
-            Omnizip
-          </router-link>
-          <router-link to="/rust" class="nav-link" :class="{ 'active': isActiveRoute('/rust') }" @click="closeMobileMenu">
-            omnizip-rs
-          </router-link>
-          <router-link to="/cabriolet" class="nav-link" :class="{ 'active': isActiveRoute('/cabriolet') }" @click="closeMobileMenu">
-            Cabriolet
-          </router-link>
           <router-link to="/blog" class="nav-link" :class="{ 'active': isActiveRoute('/blog') }" @click="closeMobileMenu">
             Blog
           </router-link>
-          <div class="nav-divider !h-px !w-auto my-2" aria-hidden="true" />
-          <a :href="config.docs.omnizip" class="nav-link nav-external" @click="closeMobileMenu">
-            Omnizip Docs
-          </a>
-          <a :href="config.docs.cabriolet" class="nav-link nav-external" @click="closeMobileMenu">
-            Cabriolet Docs
-          </a>
-          <a :href="config.docs.excavate" class="nav-link nav-external" @click="closeMobileMenu">
-            Excavate Docs
-          </a>
+
+          <div class="mobile-group-label">Ruby</div>
+          <template v-for="item in rubyItems" :key="'m-ruby-' + item.label">
+            <div v-if="item.divider" class="nav-divider !h-px !w-auto my-1" />
+            <router-link v-else-if="item.to" :to="item.to" class="nav-link" @click="closeMobileMenu">
+              {{ item.label }}
+            </router-link>
+            <a v-else :href="item.href" :target="item.external ? '_blank' : undefined" :rel="item.external ? 'noopener' : undefined" class="nav-link" @click="closeMobileMenu">
+              {{ item.label }}<span v-if="item.external" class="text-[10px] opacity-60 ml-1">↗</span>
+            </a>
+          </template>
+
+          <div class="mobile-group-label">Rust</div>
+          <template v-for="item in rustItems" :key="'m-rust-' + item.label">
+            <div v-if="item.divider" class="nav-divider !h-px !w-auto my-1" />
+            <router-link v-else-if="item.to" :to="item.to" class="nav-link" @click="closeMobileMenu">
+              {{ item.label }}
+            </router-link>
+            <a v-else :href="item.href" :target="item.external ? '_blank' : undefined" :rel="item.external ? 'noopener' : undefined" class="nav-link" @click="closeMobileMenu">
+              {{ item.label }}<span v-if="item.external" class="text-[10px] opacity-60 ml-1">↗</span>
+            </a>
+          </template>
+
           <a
             :href="config.github.organization"
             target="_blank"
@@ -117,15 +107,34 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onUnmounted } from 'vue'
+import { ref, computed, onMounted, onUnmounted } from 'vue'
 import { useRoute } from 'vue-router'
 import ThemeToggle from '../atoms/ThemeToggle.vue'
 import Logo from '../atoms/Logo.vue'
+import NavDropdown from '../molecules/NavDropdown.vue'
 import config from '../../config'
 
 const route = useRoute()
 const isScrolled = ref(false)
 const isMobileMenuOpen = ref(false)
+
+const rubyItems = [
+  { label: 'Omnizip', to: '/ruby/omnizip', hint: 'The complete Ruby library' },
+  { label: 'Cabriolet', to: '/ruby/cabriolet', hint: 'Microsoft formats' },
+  { label: 'Excavate', to: '/ruby/excavate', hint: 'Recursive extraction' },
+  { divider: true },
+  { label: 'Omnizip Docs', href: config.docs.omnizip, external: true },
+  { label: 'Cabriolet Docs', href: config.docs.cabriolet, external: true },
+  { label: 'Excavate Docs', href: config.docs.excavate, external: true },
+]
+
+const rustItems = [
+  { label: 'omnizip-rs', to: '/rust', hint: '18 pure Rust codec crates' },
+  { divider: true },
+  { label: 'Crates on crates.io', href: config.crates.index, external: true },
+  { label: 'API docs on docs.rs', href: config.docsrs.codecs, external: true },
+  { label: 'GitHub', href: config.github.rust, external: true },
+]
 
 const isActiveRoute = (path) => {
   if (path === '/blog') {
@@ -133,6 +142,11 @@ const isActiveRoute = (path) => {
   }
   return route.path === path
 }
+
+const rubyActive = computed(() =>
+  ['/ruby/omnizip', '/ruby/cabriolet', '/ruby/excavate'].some((p) => route.path.startsWith(p))
+)
+const rustActive = computed(() => route.path === '/rust')
 
 const closeMobileMenu = () => {
   isMobileMenuOpen.value = false
@@ -181,9 +195,9 @@ onUnmounted(() => {
   @apply bg-light-border dark:bg-dark-border;
 }
 
-.nav-external::after {
-  content: '↗';
-  @apply ml-1 text-[10px] opacity-60;
+.mobile-group-label {
+  @apply px-3 pt-4 pb-1 text-xs font-mono font-semibold uppercase tracking-widest;
+  @apply text-light-muted dark:text-dark-muted;
 }
 
 .slide-enter-active,

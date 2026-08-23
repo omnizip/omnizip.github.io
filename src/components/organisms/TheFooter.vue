@@ -23,7 +23,7 @@
           </h4>
           <ul class="space-y-2">
             <li>
-              <router-link to="/omnizip" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+              <router-link to="/ruby/omnizip" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
                 Omnizip
               </router-link>
             </li>
@@ -33,14 +33,14 @@
               </router-link>
             </li>
             <li>
-              <router-link to="/cabriolet" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+              <router-link to="/ruby/cabriolet" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
                 Cabriolet
               </router-link>
             </li>
             <li>
-              <a :href="config.docs.excavate" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
-                Excavate ↗
-              </a>
+              <router-link to="/ruby/excavate" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+                Excavate
+              </router-link>
             </li>
           </ul>
         </div>
