@@ -46,7 +46,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useScrollAnimation } from '../../composables/useScrollAnimation'
-import { posts } from './posts'
+import { posts } from '../../models/blog'
 
 const { initScrollAnimation } = useScrollAnimation()
 
