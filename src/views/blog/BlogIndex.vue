@@ -21,23 +21,25 @@
         v-for="post in posts"
         :key="post.slug"
         :to="'/blog/' + post.slug"
-        class="post-card glass-card block p-6 sm:p-8 mb-6"
+        class="post-card glass-card flex gap-6 p-6 sm:p-8 mb-6"
       >
-        <div class="flex items-center gap-3 mb-3">
-          <span class="post-date font-mono text-sm text-accent-purple">{{ post.date }}</span>
-        </div>
-        <h2 class="text-xl sm:text-2xl font-bold mb-3 text-light-text dark:text-dark-text leading-snug">
-          {{ post.title }}
-        </h2>
-        <p class="text-light-muted dark:text-dark-muted leading-relaxed mb-4">
-          {{ post.excerpt }}
-        </p>
-        <span class="read-more text-sm font-medium text-brand-primary inline-flex items-center gap-1">
-          Read the post
-          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
+        <span class="post-date font-mono text-sm text-accent-purple pt-1 shrink-0 tabular-nums">
+          {{ post.date }}
         </span>
+        <div class="min-w-0">
+          <h2 class="text-xl sm:text-2xl font-bold mb-3 text-light-text dark:text-dark-text leading-snug">
+            {{ post.title }}
+          </h2>
+          <p class="text-light-muted dark:text-dark-muted leading-relaxed mb-4">
+            {{ post.excerpt }}
+          </p>
+          <span class="read-more text-sm font-medium text-brand-primary inline-flex items-center gap-1">
+            Read the post
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </span>
+        </div>
       </router-link>
     </div>
   </div>
