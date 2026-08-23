@@ -26,7 +26,7 @@
           <div class="stat-label">Compression Algorithms</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">3406</div>
+          <div class="stat-value">3540+</div>
           <div class="stat-label">Tests (100% pass)</div>
         </div>
         <div class="stat-card">
@@ -69,12 +69,16 @@
             <FormatBadge format="7z" variant="rw" tooltip="Solid compression, multi-volume, AES-256" />
             <FormatBadge format="ZIP" variant="rw" tooltip="ZIP64, WinZip AES encryption" />
             <FormatBadge format="RAR4" variant="rw" tooltip="Read all, write STORE/FASTEST/NORMAL" />
-            <FormatBadge format="RAR5" variant="rw" tooltip="Read/write with STORE and LZMA" />
+            <FormatBadge format="RAR5" variant="rw" tooltip="Read/write, multi-volume, solid, AES-256, PAR2 recovery" />
             <FormatBadge format="TAR" variant="rw" tooltip="POSIX extensions" />
             <FormatBadge format="ISO" variant="rw" tooltip="Rock Ridge, Joliet" />
-            <FormatBadge format="XAR" variant="rw" tooltip="XML TOC, gzip/bzip2/lzma" />
+            <FormatBadge format="XAR" variant="rw" tooltip="XML TOC, gzip/bzip2/lzma, macOS .pkg" />
             <FormatBadge format="CPIO" variant="rw" tooltip="newc, CRC formats" />
+            <FormatBadge format="RPM" variant="rw" tooltip="Metadata extraction, gzip/bzip2/xz/zstd payloads" />
+            <FormatBadge format="OLE" variant="rw" tooltip="Compound documents: .doc, .xls, .ppt, .msi" />
+            <FormatBadge format="MSI" variant="read" tooltip="Extract files from embedded cabinets" />
             <FormatBadge format="XZ" variant="rw" tooltip="LZMA2, CRC32/64/SHA256" />
+            <FormatBadge format="LZIP" variant="rw" />
             <FormatBadge format="GZIP" variant="rw" />
             <FormatBadge format="BZIP2" variant="rw" />
             <FormatBadge format="PAR2" variant="rw" tooltip="Reed-Solomon error correction" />
@@ -154,8 +158,10 @@ const features = [
   { title: 'XZ Format', description: 'Complete LZMA2 support with XZ Utils compatibility' },
   { title: 'RAR Support', description: 'RAR4 read all/write some, RAR5 full read/write' },
   { title: 'ZIP & ZIP64', description: 'Full support including WinZip AES encryption' },
-  { title: 'ISO 9660', description: 'Read/write with Rock Ridge and Joliet extensions' },
+  { title: 'RPM & OLE', description: 'Read/write RPM packages and OLE compound documents (.doc, .xls, .msi)' },
+  { title: 'XAR & MSI', description: 'macOS XAR packages; extract files from MSI embedded cabinets' },
   { title: 'PAR2 Archives', description: 'Reed-Solomon error correction and recovery' },
+  { title: 'AES-256 Encryption', description: 'Password protection with PBKDF2 key derivation' },
   { title: 'Parallel Processing', description: 'Multi-threaded compression using Ractors' },
 ]
 

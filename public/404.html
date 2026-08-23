@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      SPA fallback for GitHub Pages: deep routes like /rust and /blog/... have no
+      static file, so Pages serves this page (status 404). It boots the same app
+      and lets vue-router render the correct route from location.pathname.
+    -->
+    <script>
+      // Redirect to the root app with the original path restored via the hash,
+      // so the SPA renders the requested route after the round-trip.
+      (function () {
+        var l = window.location
+        l.replace(l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') + '/?path=' + encodeURIComponent(l.pathname))
+      })()
+    </script>
+    <title>Omnizip</title>
+  </head>
+  <body>
+    <div id="app"></div>
+  </body>
+</html>

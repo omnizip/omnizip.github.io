@@ -102,6 +102,22 @@
             <FormatBadge v-for="a in msAlgos" :key="a" :format="a" />
           </div>
         </div>
+        <!-- Rust Codec Crates -->
+        <div class="format-category lg:col-span-3">
+          <h3 class="text-lg font-semibold mb-4 text-light-text dark:text-dark-text flex items-center gap-2">
+            <span class="w-8 h-8 rounded-lg bg-accent-purple/20 flex items-center justify-center">
+              <svg class="w-4 h-4 text-accent-purple" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </span>
+            Rust Codec Crates (omnizip-rs)
+            <router-link to="/rust" class="ml-auto text-sm font-medium text-accent-purple hover:underline">Explore the family &rarr;</router-link>
+          </h3>
+          <div class="flex flex-wrap gap-2">
+            <FormatBadge v-for="c in rustCodecs" :key="c.name" :format="c.name" :tooltip="c.tooltip" />
+          </div>
+        </div>
       </div>
 
       <!-- Legend -->
@@ -137,8 +153,10 @@ const archiveFormats = [
   { name: 'XAR', variant: 'rw', tooltip: 'Read & Write - macOS packages' },
   { name: 'RPM', variant: 'rw', tooltip: 'Read & Write - Package creation & extraction' },
   { name: 'OLE', variant: 'rw', tooltip: 'Read & Write - MS compound docs (.doc, .xls, .ppt, .msi)' },
+  { name: 'MSI', variant: 'read', tooltip: 'Read - Extract from embedded cabinets' },
   { name: 'CPIO', variant: 'rw', tooltip: 'Read & Write - RPM payload support' },
   { name: 'XZ', variant: 'rw', tooltip: 'Read & Write - LZMA2, full XZ Utils compat' },
+  { name: 'LZIP', variant: 'rw', tooltip: 'Read & Write' },
   { name: 'GZIP', variant: 'rw', tooltip: 'Read & Write' },
   { name: 'BZIP2', variant: 'rw', tooltip: 'Read & Write' },
   { name: 'PAR2', variant: 'rw', tooltip: 'Read & Write - Reed-Solomon error correction' },
@@ -173,6 +191,28 @@ const advancedFeatures = [
 // Microsoft-specific algorithms
 const msAlgos = [
   'LZSS', 'MSZIP', 'LZX', 'Quantum',
+]
+
+// Rust codec crates (omnizip-rs)
+const rustCodecs = [
+  { name: 'omnizip-lzma', tooltip: 'LZMA / LZMA2 / XZ / lzip' },
+  { name: 'omnizip-zstd', tooltip: 'Zstandard with dictionaries' },
+  { name: 'omnizip-brotli', tooltip: 'RFC 7932, quality 0-11' },
+  { name: 'omnizip-bzip2', tooltip: 'BWT + MTF + Huffman' },
+  { name: 'omnizip-deflate', tooltip: 'RFC 1951 - zlib, gzip, raw' },
+  { name: 'omnizip-deflate64', tooltip: '64 KB window DEFLATE64' },
+  { name: 'omnizip-libdeflate', tooltip: 'High-speed DEFLATE' },
+  { name: 'omnizip-lz4', tooltip: 'LZ4 fast + HC' },
+  { name: 'omnizip-snappy', tooltip: 'From-spec Snappy' },
+  { name: 'omnizip-ppmd', tooltip: 'PPMd7 + PPMd8' },
+  { name: 'omnizip-zpaq', tooltip: 'Context-mixing archival' },
+  { name: 'omnizip-glza', tooltip: 'Grammar-based LZ' },
+  { name: 'omnizip-fsst', tooltip: 'Fast Static Symbol Table' },
+  { name: 'omnizip-flac', tooltip: 'Lossless audio, full LPC' },
+  { name: 'omnizip-ricepp', tooltip: 'Integer-pixel data' },
+  { name: 'omnizip-blosc', tooltip: 'BLOSC2 shuffle container' },
+  { name: 'omnizip-codecs', tooltip: 'Shared Codec trait + registry' },
+  { name: 'omnizip-filters', tooltip: 'BCJ + delta filters' },
 ]
 </script>
 

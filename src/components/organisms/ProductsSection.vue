@@ -6,12 +6,13 @@
           The Omnizip Suite
         </h2>
         <p class="text-light-muted dark:text-dark-muted max-w-2xl mx-auto">
-          Three specialized libraries designed to handle all your compression needs,
-          from common archives to Microsoft-specific formats to recursive extraction.
+          Four specialized libraries designed to handle all your compression needs,
+          from common archives to Microsoft-specific formats to recursive extraction —
+          now with a pure Rust codec family for production-grade speed.
         </p>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6">
         <!-- Omnizip -->
         <ProductCard
           title="Omnizip"
@@ -22,6 +23,18 @@
           :formats="['7z', 'ZIP', 'RAR4', 'RAR5', 'TAR', 'ISO', 'XAR', 'RPM', 'OLE', 'XZ', 'GZIP', 'BZIP2']"
           :docs-link="config.docs.omnizip"
           :github-link="config.github.omnizip"
+        />
+
+        <!-- omnizip-rs -->
+        <ProductCard
+          title="omnizip-rs"
+          subtitle="Pure Rust Codecs"
+          description="18 pure Rust codec crates — LZMA, ZSTD, Brotli, DEFLATE, bzip2, PPMd, ZPAQ, LZ4, Snappy, FLAC and more. 100% safe code, byte-deterministic output, verified line-by-line against the Ruby reference."
+          emoji="🦀"
+          accent-color="#b274e2"
+          :formats="['LZMA', 'ZSTD', 'Brotli', 'DEFLATE', 'bzip2', 'PPMd', 'ZPAQ', 'LZ4', 'FLAC']"
+          docs-link="/rust"
+          :github-link="config.github.rust"
         />
 
         <!-- Cabriolet -->

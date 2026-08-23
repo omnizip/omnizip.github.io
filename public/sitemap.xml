@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://www.omnizip.org/</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.omnizip.org/rust</loc><changefreq>weekly</changefreq></url>
+  <url><loc>https://www.omnizip.org/blog/omnizip-rs-announcement</loc><changefreq>monthly</changefreq></url>
+</urlset>

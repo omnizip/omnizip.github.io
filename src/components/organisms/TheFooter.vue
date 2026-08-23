@@ -10,8 +10,9 @@
             </div>
           </router-link>
           <p class="text-light-muted dark:text-dark-muted text-sm max-w-md">
-            Pure Ruby compression libraries with zero native dependencies.
-            Works everywhere Ruby runs - JRuby, TruffleRuby, and all platforms.
+            Compression libraries in pure Ruby and pure Rust with zero native dependencies.
+            Ruby works everywhere - JRuby, TruffleRuby, and all platforms. Rust brings
+            production-grade speed with 100% safe code.
           </p>
         </div>
 
@@ -31,6 +32,11 @@
                 Cabriolet
               </a>
             </li>
+            <li>
+              <router-link to="/rust" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+                omnizip-rs
+              </router-link>
+            </li>
           </ul>
         </div>
 
@@ -48,6 +54,11 @@
             <li>
               <a :href="config.rubygems.omnizip" target="_blank" rel="noopener" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
                 RubyGems
+              </a>
+            </li>
+            <li>
+              <a :href="config.crates.index" target="_blank" rel="noopener" class="text-sm text-light-muted dark:text-dark-muted hover:text-brand-primary transition-colors">
+                crates.io
               </a>
             </li>
             <li>

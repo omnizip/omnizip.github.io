@@ -1,5 +1,6 @@
 <template>
   <div class="home-page">
+    <AnnouncementBanner />
     <HeroSection />
     <FeaturesSection />
     <ProductsSection />
@@ -12,6 +13,7 @@
 <script setup>
 import { onMounted } from 'vue'
 import { useScrollAnimation } from '../composables/useScrollAnimation'
+import AnnouncementBanner from '../components/organisms/AnnouncementBanner.vue'
 import HeroSection from '../components/organisms/HeroSection.vue'
 import FeaturesSection from '../components/organisms/FeaturesSection.vue'
 import ProductsSection from '../components/organisms/ProductsSection.vue'

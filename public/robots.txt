@@ -1,5 +1,4 @@
 User-agent: *
 Allow: /
 
-# Sitemap is generated at build time
-# Base URL configured in src/config.js
+Sitemap: https://www.omnizip.org/sitemap.xml

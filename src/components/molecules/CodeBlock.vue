@@ -1,5 +1,5 @@
 <template>
-  <div class="code-block glass-card overflow-hidden">
+  <div ref="root" class="code-block glass-card overflow-hidden">
     <div class="flex items-center justify-between px-4 py-2 border-b border-light-border dark:border-dark-border">
       <span class="text-sm font-medium text-light-muted dark:text-dark-muted">
         {{ language }}
@@ -36,10 +36,11 @@ defineProps({
   },
 })
 
+const root = ref(null)
 const isCopied = ref(false)
 
 const copyCode = async () => {
-  const code = document.querySelector('.code-block code')?.textContent || ''
+  const code = root.value?.querySelector('code')?.textContent || ''
   try {
     await navigator.clipboard.writeText(code)
     isCopied.value = true

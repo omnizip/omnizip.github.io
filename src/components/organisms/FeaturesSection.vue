@@ -6,8 +6,9 @@
           Why Omnizip?
         </h2>
         <p class="text-light-muted dark:text-dark-muted max-w-2xl mx-auto">
-          Built from the ground up in pure Ruby, Omnizip provides comprehensive
-          compression support without the complexity of native extensions.
+          Built from the ground up in pure Ruby — now joined by a pure Rust codec
+          family — Omnizip provides comprehensive compression support without the
+          complexity of native extensions.
         </p>
       </div>
 
@@ -26,7 +27,7 @@
 
         <FeatureCard
           title="Zero Dependencies"
-          description="Pure Ruby implementation means no C extensions to compile, no system libraries to install. Just add the gem and go."
+          description="Pure Ruby and pure Rust implementations mean no C extensions to compile, no system libraries to install. The Rust family forbids unsafe code workspace-wide."
           color="gold"
         >
           <template #icon>
@@ -38,7 +39,7 @@
 
         <FeatureCard
           title="Comprehensive Support"
-          description="Support for 15+ archive formats and 8+ compression algorithms. More comprehensive than libarchive, libmspack, or 7-zip."
+          description="Support for 15+ archive formats and 18 Rust codec crates. More comprehensive than libarchive, libmspack, or 7-zip."
           color="purple"
         >
           <template #icon>
