@@ -70,7 +70,7 @@ post — measured, not estimated. What's in the table is what ran, exactly
 as measured.
 
 The headline numbers: **24.9%** best measured ratio (lzma/9 — reference-xz
-parity), **149 MiB/s** fastest decode (zstd/19), and **100%** of measured
+parity), **145 MiB/s** fastest decode (lz4/12), and **100%** of measured
 cases deterministic with clean round-trips.
 
 | Codec | Level | Output | Ratio | Encode | Decode |
@@ -79,13 +79,12 @@ cases deterministic with clean round-trips.
 | lzma (xz) | 6 | 26,666,100 B | 26.7% | 5.9 MiB/s | 61.0 MiB/s |
 | bzip2 | 9 | 31,527,197 B | 31.5% | 0.9 MiB/s | 1.5 MiB/s |
 | ppmd7 | 9 | 32,500,082 B | 32.5% | 1.1 MiB/s | 1.1 MiB/s |
+| zstd | 19 | 39,208,628 B | 39.2% | 15.9 MiB/s | 99.3 MiB/s |
+| zstd | 3 | 39,406,374 B | 39.4% | 22.5 MiB/s | 115.6 MiB/s |
 | ppmd8 | 9 | 42,611,479 B | 42.6% | 0.6 MiB/s | 0.7 MiB/s |
 | lz4hc | 3 | 43,047,875 B | 43.0% | 5.2 MiB/s | 117.2 MiB/s |
 | lz4hc | 9 | 43,047,875 B | 43.0% | 3.6 MiB/s | 70.5 MiB/s |
 | lz4hc | 12 | 43,047,875 B | 43.0% | 3.4 MiB/s | 84.7 MiB/s |
-| zstd | 22 | 43,630,876 B | 43.6% | 0.3 MiB/s | 79.4 MiB/s |
-| zstd | 19 | 45,167,014 B | 45.2% | 30.8 MiB/s | 149.2 MiB/s |
-| zstd | 3 | 46,486,322 B | 46.5% | 15.1 MiB/s | 57.3 MiB/s |
 | snappy | 1 | 52,792,256 B | 52.8% | 31.3 MiB/s | 88.3 MiB/s |
 | lz4 | 1 | 53,006,804 B | 53.0% | 51.9 MiB/s | 130.9 MiB/s |
 | lz4 | 9 | 53,006,804 B | 53.0% | 73.2 MiB/s | 135.1 MiB/s |
@@ -98,6 +97,8 @@ cases deterministic with clean round-trips.
 `0.16.89: fixed external xz interop on mixed content (#329) — a conformance fix; measured ratios are unchanged.`
 
 `0.16.92: BT4 match finder + parallel block encoding for LZMA — parity with system xz -6/-9 (within 1% size, 1.05–1.10x time across the conformance matrix). The lzma rows above were re-measured on 0.16.92.`
+
+`0.16.94: cost-measured zstd FSE table selection — zstd/3 46.5% → 39.4%, zstd/19 45.2% → 39.2%; the zstd rows were re-measured on 0.16.94.`
 
 ### The roadmap fine print
 
