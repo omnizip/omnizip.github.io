@@ -1,7 +1,7 @@
 ---
 title: omnizip-rs is here — 18 pure Rust compression crates, verified against Ruby, live on crates.io
 date: 2026-08-23
-excerpt: "The Omnizip family just grew a Rust wing. Every major codec from the Ruby reference — LZMA, ZSTD, Brotli, bzip2, PPMd, ZPAQ and a dozen more — now ships as a pure Rust crate with zero unsafe code, zero native dependencies, and byte-identical output on every machine. Today we're announcing general availability at v0.16.89, with the full benchmark story below."
+excerpt: "The Omnizip family just grew a Rust wing. Every major codec from the Ruby reference — LZMA, ZSTD, Brotli, bzip2, PPMd, ZPAQ and a dozen more — now ships as a pure Rust crate with zero unsafe code, zero native dependencies, and byte-identical output on every machine. Today we're announcing general availability at v0.16.92, with the full benchmark story below."
 stats:
   - value: 18
     label: crates on crates.io
@@ -9,7 +9,7 @@ stats:
     label: unsafe blocks, workspace-wide
   - value: 100%
     label: deterministic encodes
-  - value: v0.16.89
+  - value: v0.16.92
     label: released today
 ---
 
@@ -69,15 +69,16 @@ numbers land with the expanded public benchmark suite shortly after this
 post — measured, not estimated. What's in the table is what ran, exactly
 as measured.
 
-The headline numbers: **31.5%** best measured ratio (bzip2/9), **149 MiB/s**
-fastest decode (zstd/19), and **100%** of measured cases deterministic with
-clean round-trips.
+The headline numbers: **24.9%** best measured ratio (lzma/9 — reference-xz
+parity), **149 MiB/s** fastest decode (zstd/19), and **100%** of measured
+cases deterministic with clean round-trips.
 
 | Codec | Level | Output | Ratio | Encode | Decode |
 |---|---:|---:|---:|---:|---:|
+| lzma (xz) | 9 | 24,867,032 B | 24.9% | 1.2 MiB/s | 67.0 MiB/s |
+| lzma (xz) | 6 | 26,666,100 B | 26.7% | 5.9 MiB/s | 61.0 MiB/s |
 | bzip2 | 9 | 31,527,197 B | 31.5% | 0.9 MiB/s | 1.5 MiB/s |
 | ppmd7 | 9 | 32,500,082 B | 32.5% | 1.1 MiB/s | 1.1 MiB/s |
-| lzma (xz) | 6 | 35,650,060 B | 35.7% | 0.2 MiB/s | 46.4 MiB/s |
 | ppmd8 | 9 | 42,611,479 B | 42.6% | 0.6 MiB/s | 0.7 MiB/s |
 | lz4hc | 3 | 43,047,875 B | 43.0% | 5.2 MiB/s | 117.2 MiB/s |
 | lz4hc | 9 | 43,047,875 B | 43.0% | 3.6 MiB/s | 70.5 MiB/s |
@@ -92,9 +93,11 @@ clean round-trips.
 
 `Apple M1 Max · rustc stable · release profile · single thread · best-of-N · deterministic: true, round-trip: ok on every row`
 
-`Results updated after the LZMA2 scale fix (0.16.87) and the ZSTD literals fix (0.16.88); the lzma and zstd 19/22 rows were measured on the fixed releases.`
+`Results updated after the LZMA2 scale fix (0.16.87) and the ZSTD literals fix (0.16.88); the zstd 19/22 rows were measured on the fixed releases.`
 
 `0.16.89: fixed external xz interop on mixed content (#329) — a conformance fix; measured ratios are unchanged.`
+
+`0.16.92: BT4 match finder + parallel block encoding for LZMA — parity with system xz -6/-9 (within 1% size, 1.05–1.10x time across the conformance matrix). The lzma rows above were re-measured on 0.16.92.`
 
 ### The roadmap fine print
 
@@ -102,10 +105,10 @@ These are first-release, from-spec, pure-safe-Rust encoders, and the
 throughput campaign is already in flight on the roadmap. What that means for
 you today:
 
-- Ratio is here; the last few percent of C-reference *speed* at the
-  ultra-quality tiers arrives with the binary-tree match finders, SA-IS
-  suffix sorting for bzip2, and profile-guided optimization — all listed,
-  all in progress.
+- The BT4 binary-tree match finder landed for LZMA in 0.16.92 — reference-xz
+  parity on ratio, within ~10% on time. Next in flight: the binary-tree
+  finder for ZSTD's ultra tiers, SA-IS suffix sorting for bzip2, and
+  profile-guided optimization.
 - The from-scratch LZ4 and Snappy ports were built format-first: correctness
   and round-trip parity before raw speed, so the family ships with every
   codec pulling its weight on integrity.
@@ -210,8 +213,8 @@ and the Rust side follows — and vice versa. Two implementations, one truth.
 
 ## What's next
 
-- **Binary-tree match finders** for LZMA and ZSTD's ultra levels — closing
-  the last ratio gap to the C references.
+- **Binary-tree match finders** — LZMA's landed in 0.16.92; ZSTD's ultra
+  levels are next, closing the last ratio gap to the C reference.
 - **SA-IS suffix sorting** for bzip2's Burrows-Wheeler transform, replacing
   the current O(n log² n) prefix-doubling.
 - **Safe SIMD** via `std::simd` for match-length comparison and checksums.
@@ -221,7 +224,7 @@ and the Rust side follows — and vice versa. Two implementations, one truth.
 
 ## Get it
 
-All 18 crates are live on crates.io at v0.16.89, dual-licensed
+All 18 crates are live on crates.io at v0.16.92, dual-licensed
 MIT OR Apache-2.0, MSRV 1.75. API documentation is on docs.rs, and the
 repository — including every benchmark script — is public.
 
