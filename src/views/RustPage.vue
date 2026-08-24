@@ -32,7 +32,7 @@
             </div>
             <div class="mt-4 flex items-baseline justify-between gap-4">
               <span class="text-xs font-mono text-light-muted dark:text-dark-muted truncate">
-                {{ stripCompressed ? 'bzip2/9 · 100,000,000 B → ' + heroOutputBytes + ' B' : 'bzip2/9 · compressing…' }}
+                {{ stripCompressed ? 'lzma/9 · 100,000,000 B → ' + heroOutputBytes + ' B' : 'lzma/9 · compressing…' }}
               </span>
               <span class="ratio-label font-mono" :class="{ shown: stripCompressed }">ratio {{ heroRatio }}</span>
             </div>
@@ -108,7 +108,7 @@
             One crate per algorithm
           </h2>
           <p class="text-light-muted dark:text-dark-muted max-w-2xl mx-auto">
-            All published to crates.io at v0.16.89, dual licensed MIT OR Apache-2.0.
+            All published to crates.io at v0.16.92, dual licensed MIT OR Apache-2.0.
             Add exactly what you need &mdash; codecs never depend on each other.
           </p>
         </div>
@@ -278,8 +278,8 @@ const { initScrollAnimation } = useScrollAnimation()
 const stripCompressed = ref(false)
 
 // Measured on enwik8 with omnizip-bench (release build); see the announcement post.
-const heroOutputBytes = ref('31,527,197')
-const heroRatio = ref('31.5%')
+const heroOutputBytes = ref('24,867,032')
+const heroRatio = ref('24.9%')
 
 const hexBytes = Array.from({ length: 28 }, (_, i) =>
   (i * 7 + 0x2f).toString(16).padStart(2, '0')
@@ -299,7 +299,7 @@ const stats = [
   { value: '18', label: 'codec crates' },
   { value: '0', label: 'unsafe blocks' },
   { value: '100%', label: 'deterministic encodes' },
-  { value: 'v0.16.89', label: 'live on crates.io' },
+  { value: 'v0.16.92', label: 'live on crates.io' },
   { value: '97k+', label: 'crate downloads' },
   { value: 'MIT/Apache', label: 'dual licensed' },
 ]
@@ -426,10 +426,10 @@ const guarantees = [
 ]
 
 const benchHighlights = [
+  { codec: 'lzma (xz)', level: '9', output: '24.9 MB', ratio: '24.9%', encode: '1.2 MiB/s', decode: '67.0 MiB/s' },
+  { codec: 'lzma (xz)', level: '6', output: '26.7 MB', ratio: '26.7%', encode: '5.9 MiB/s', decode: '61.0 MiB/s' },
   { codec: 'bzip2', level: '9', output: '31.5 MB', ratio: '31.5%', encode: '0.9 MiB/s', decode: '1.5 MiB/s' },
   { codec: 'ppmd7', level: '9', output: '32.5 MB', ratio: '32.5%', encode: '1.1 MiB/s', decode: '1.1 MiB/s' },
-  { codec: 'lzma (xz)', level: '6', output: '35.7 MB', ratio: '35.7%', encode: '0.2 MiB/s', decode: '46.4 MiB/s' },
-  { codec: 'zstd', level: '22', output: '43.6 MB', ratio: '43.6%', encode: '0.3 MiB/s', decode: '79.4 MiB/s' },
   { codec: 'zstd', level: '19', output: '45.2 MB', ratio: '45.2%', encode: '30.8 MiB/s', decode: '149.2 MiB/s' },
   { codec: 'lz4', level: '12', output: '53.0 MB', ratio: '53.0%', encode: '73.1 MiB/s', decode: '145.0 MiB/s' },
 ]
