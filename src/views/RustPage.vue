@@ -42,7 +42,7 @@
             <BaseButton as="a" :href="config.github.rust" target="_blank" rel="noopener" variant="primary" size="lg">
               View on GitHub
             </BaseButton>
-            <BaseButton as="router-link" to="/blog/omnizip-rs-announcement" variant="secondary" size="lg">
+            <BaseButton as="router-link" to="/blog/2026-08-23-omnizip-rs-announcement" variant="secondary" size="lg">
               Read the announcement
             </BaseButton>
             <BaseButton as="a" :href="config.crates.index" target="_blank" rel="noopener" variant="ghost" size="lg">
@@ -232,7 +232,7 @@
         </div>
 
         <p class="text-center mt-6">
-          <router-link to="/blog/omnizip-rs-announcement" class="text-brand-primary font-medium hover:underline">
+          <router-link to="/blog/2026-08-23-omnizip-rs-announcement" class="text-brand-primary font-medium hover:underline">
             Full methodology, all codecs and the honest caveats &rarr;
           </router-link>
         </p>
