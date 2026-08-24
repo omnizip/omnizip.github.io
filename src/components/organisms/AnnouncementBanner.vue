@@ -5,7 +5,7 @@
       <p class="text-sm text-light-text dark:text-dark-text">
         <strong>omnizip-rs is here</strong> — 18 pure Rust codecs, zero unsafe, live on crates.io
       </p>
-      <router-link to="/blog/omnizip-rs-announcement" class="cta text-sm font-medium inline-flex items-center gap-1">
+      <router-link to="/blog/2026-08-23-omnizip-rs-announcement" class="cta text-sm font-medium inline-flex items-center gap-1">
         Read the announcement
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />

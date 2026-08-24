@@ -1,6 +1,6 @@
 // Blog model — the single source of truth for posts.
 //
-// A post is a markdown file under src/content/blog/ named {date}-{slug}.md
+// A post is a markdown file under src/content/blog/ named {date}-{name}.md
 // with frontmatter:
 //
 //   ---
@@ -12,9 +12,10 @@
 //   ---
 //   …markdown body…
 //
-// The filename date prefix and the slug are canonical (SSOT: the frontmatter
-// date must agree with the filename or the model throws). Invalid content
-// fails loud at build/dev time.
+// The filename is fully canonical — both the URL slug (`{date}-{name}`) and
+// the post date come from it. The frontmatter date must agree with the
+// filename date or the model throws at build/dev time. Invalid content
+// fails loud.
 
 import { load as jsYamlLoad, CORE_SCHEMA } from 'js-yaml'
 
@@ -29,11 +30,11 @@ const FILENAME = /^(\d{4}-\d{2}-\d{2})-(.+)\.md$/
 
 function parsePost(path, raw) {
   const file = path.split('/').pop()
-  const name = file.match(FILENAME)
-  if (!name) {
-    throw new Error(`blog/${file}: filename must be {{date}}-{{slug}}.md`)
+  const fileNameMatch = file.match(FILENAME)
+  if (!fileNameMatch) {
+    throw new Error(`blog/${file}: filename must be {{date}}-{{name}}.md`)
   }
-  const [, fileDate, slug] = name
+  const [, fileDate, postName] = fileNameMatch
 
   const match = raw.match(FRONTMATTER)
   if (!match) {
@@ -60,7 +61,7 @@ function parsePost(path, raw) {
   }
 
   return {
-    slug,
+    slug: `${fileDate}-${postName}`,
     title: meta.title,
     date: meta.date,
     excerpt: meta.excerpt,
