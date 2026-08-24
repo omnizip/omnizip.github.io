@@ -430,7 +430,7 @@ const benchHighlights = [
   { codec: 'lzma (xz)', level: '6', output: '26.7 MB', ratio: '26.7%', encode: '5.9 MiB/s', decode: '61.0 MiB/s' },
   { codec: 'bzip2', level: '9', output: '31.5 MB', ratio: '31.5%', encode: '0.9 MiB/s', decode: '1.5 MiB/s' },
   { codec: 'ppmd7', level: '9', output: '32.5 MB', ratio: '32.5%', encode: '1.1 MiB/s', decode: '1.1 MiB/s' },
-  { codec: 'zstd', level: '19', output: '45.2 MB', ratio: '45.2%', encode: '30.8 MiB/s', decode: '149.2 MiB/s' },
+  { codec: 'zstd', level: '19', output: '39.2 MB', ratio: '39.2%', encode: '15.9 MiB/s', decode: '99.3 MiB/s' },
   { codec: 'lz4', level: '12', output: '53.0 MB', ratio: '53.0%', encode: '73.1 MiB/s', decode: '145.0 MiB/s' },
 ]
 
