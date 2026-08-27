@@ -3,9 +3,9 @@
     <div class="container-wide py-3 flex flex-col sm:flex-row items-center justify-center gap-2 sm:gap-3 text-center">
       <span class="badge font-mono">New</span>
       <p class="text-sm text-light-text dark:text-dark-text">
-        <strong>omnizip-rs is here</strong> — 18 pure Rust codecs, zero unsafe, live on crates.io
+        <strong>The container layer has landed</strong> — ozip, 31 crates, every format, deterministic by default
       </p>
-      <router-link to="/blog/2026-08-23-omnizip-rs-announcement" class="cta text-sm font-medium inline-flex items-center gap-1">
+      <router-link to="/blog/2026-08-28-ozip-and-the-container-layer" class="cta text-sm font-medium inline-flex items-center gap-1">
         Read the announcement
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />

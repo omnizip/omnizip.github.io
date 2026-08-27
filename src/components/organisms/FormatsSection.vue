@@ -213,6 +213,13 @@ const rustCodecs = [
   { name: 'omnizip-blosc', tooltip: 'BLOSC2 shuffle container' },
   { name: 'omnizip-codecs', tooltip: 'Shared Codec trait + registry' },
   { name: 'omnizip-filters', tooltip: 'BCJ + delta filters' },
+  { name: 'omnizip-archive-core', tooltip: 'Archive traits + format sniffing' },
+  { name: 'omnizip-zip', tooltip: 'ZIP + ZIP64' },
+  { name: 'omnizip-sevenzip', tooltip: '7z solid + AES' },
+  { name: 'omnizip-rar', tooltip: 'RAR5 rw / RAR4 read' },
+  { name: 'omnizip-iso', tooltip: 'ISO 9660 RR + Joliet' },
+  { name: 'omnizip-rpm', tooltip: 'RPM read/write' },
+  { name: 'ozip', tooltip: 'The CLI: every codec, every format' },
 ]
 </script>
 
