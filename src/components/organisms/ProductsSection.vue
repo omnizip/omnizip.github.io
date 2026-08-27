@@ -29,10 +29,10 @@
         <ProductCard
           title="omnizip-rs"
           subtitle="Pure Rust Codecs"
-          description="18 pure Rust codec crates — LZMA, ZSTD, Brotli, DEFLATE, bzip2, PPMd, ZPAQ, LZ4, Snappy, FLAC and more. 100% safe code, byte-deterministic output, verified line-by-line against the Ruby reference."
+          description="31 pure Rust crates: codecs at reference parity (LZMA, ZSTD, Brotli, bzip2…) plus the full archive-container layer — ZIP, 7z, RAR, TAR, ISO, RPM — and ozip, one deterministic binary for them all."
           emoji="🦀"
           accent-color="#b274e2"
-          :formats="['LZMA', 'ZSTD', 'Brotli', 'DEFLATE', 'bzip2', 'PPMd', 'ZPAQ', 'LZ4', 'FLAC']"
+          :formats="['LZMA', 'ZSTD', 'ZIP', '7z', 'RAR', 'TAR', 'ISO', 'RPM', 'ozip']"
           docs-link="/rust"
           :github-link="config.github.rust"
         />

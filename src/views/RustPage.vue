@@ -11,12 +11,13 @@
             <span class="font-mono">omnizip-rs</span>
           </h1>
           <p class="text-xl sm:text-2xl mb-4 text-light-text dark:text-dark-text">
-            <span class="gradient-text">18 compression codecs.</span> Pure Rust. Zero unsafe.
+            <span class="gradient-text">Every codec. Every format.</span> Pure Rust. Zero unsafe.
           </p>
           <p class="text-lg text-light-muted dark:text-dark-muted max-w-2xl mx-auto mb-10">
-            The Omnizip Ruby reference implementations, ported line by line to Rust for
-            production speed &mdash; and verified byte-identical against the Ruby on every fixture,
-            on every release.
+            31 crates: the codec family ported line by line from the Ruby reference, plus a
+            full archive-container layer and <span class="font-mono text-base">ozip</span>, one
+            deterministic binary for them all &mdash; verified byte-identical against the Ruby
+            and the reference tools on every fixture, on every release.
           </p>
 
           <!-- Signature: the compression strip -->
@@ -42,8 +43,8 @@
             <BaseButton as="a" :href="config.github.rust" target="_blank" rel="noopener" variant="primary" size="lg">
               View on GitHub
             </BaseButton>
-            <BaseButton as="router-link" to="/blog/2026-08-23-omnizip-rs-announcement" variant="secondary" size="lg">
-              Read the announcement
+            <BaseButton as="router-link" to="/blog/2026-08-28-ozip-and-the-container-layer" variant="secondary" size="lg">
+              What's new
             </BaseButton>
             <BaseButton as="a" :href="config.crates.index" target="_blank" rel="noopener" variant="ghost" size="lg">
               crates.io
@@ -105,11 +106,12 @@
         <div class="text-center mb-12">
           <span class="eyebrow">The family</span>
           <h2 class="text-3xl sm:text-4xl font-bold mt-3 mb-4 text-light-text dark:text-dark-text">
-            One crate per algorithm
+            One crate per job
           </h2>
           <p class="text-light-muted dark:text-dark-muted max-w-2xl mx-auto">
-            All published to crates.io at v0.16.92, dual licensed MIT OR Apache-2.0.
-            Add exactly what you need &mdash; codecs never depend on each other.
+            The 18 codec crates are on crates.io at v0.21.9, dual licensed
+            MIT OR Apache-2.0. The container layer and the CLI ship from the
+            repository. Add exactly what you need.
           </p>
         </div>
 
@@ -187,6 +189,38 @@
             <p class="text-sm text-light-muted dark:text-dark-muted leading-relaxed">{{ g.description }}</p>
             <code v-if="g.code" class="guarantee-code mt-3 inline-block font-mono text-xs">{{ g.code }}</code>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ ozip CLI ============ -->
+    <section class="section-padding">
+      <div class="container-wide">
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+          <div>
+            <span class="eyebrow">The CLI</span>
+            <h2 class="text-3xl sm:text-4xl font-bold mt-3 mb-6 text-light-text dark:text-dark-text">
+              <span class="font-mono">ozip</span>: one binary, every format
+            </h2>
+            <ul class="space-y-4">
+              <li v-for="point in ozipPoints" :key="point.title" class="flex gap-3">
+                <div class="arch-check flex-shrink-0 mt-0.5">
+                  <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 class="font-semibold text-light-text dark:text-dark-text">{{ point.title }}</h3>
+                  <p class="text-sm text-light-muted dark:text-dark-muted">{{ point.description }}</p>
+                </div>
+              </li>
+            </ul>
+            <p class="mt-6 text-sm text-light-muted dark:text-dark-muted">
+              Build it from the repository:
+              <span class="font-mono text-brand-primary">cargo build --release -p ozip</span>
+            </p>
+          </div>
+          <CodeBlock language="text">{{ ozipHelp }}</CodeBlock>
         </div>
       </div>
     </section>
@@ -296,11 +330,11 @@ onMounted(() => {
 })
 
 const stats = [
-  { value: '18', label: 'codec crates' },
+  { value: '31', label: 'crates in the workspace' },
   { value: '0', label: 'unsafe blocks' },
   { value: '100%', label: 'deterministic encodes' },
-  { value: 'v0.16.92', label: 'live on crates.io' },
-  { value: '97k+', label: 'crate downloads' },
+  { value: 'v0.21.9', label: 'live on crates.io' },
+  { value: '137k+', label: 'crate downloads' },
   { value: 'MIT/Apache', label: 'dual licensed' },
 ]
 
@@ -355,6 +389,23 @@ const crateGroups = [
     ],
   },
   {
+    name: 'Archive containers',
+    crates: [
+      { name: 'omnizip-archive-core', description: 'The ArchiveReader/ArchiveWriter traits, Entry model, format sniffing, and the extraction security boundary.', formats: ['core'] },
+      { name: 'omnizip-zip', description: 'ZIP with ZIP64 — verified past 4 GiB and 65,535 entries.', formats: ['ZIP rw'] },
+      { name: 'omnizip-tar', description: 'TAR with POSIX/pax extensions, deterministic creation.', formats: ['TAR rw'] },
+      { name: 'omnizip-sevenzip', description: '7z with the full coder mapping, solid archives and 7zAES.', formats: ['7z rw'] },
+      { name: 'omnizip-rar', description: 'RAR5 read/write with AES-256, encrypted headers, multi-volume; RAR4 read with LZSS, PPMd and VM filters.', formats: ['RAR5 rw', 'RAR4 r'] },
+      { name: 'omnizip-iso', description: 'ISO 9660 dual-tree writer — Rock Ridge and Joliet, full metadata in both trees.', formats: ['ISO rw'] },
+      { name: 'omnizip-xar', description: 'XAR packages with XML TOC and per-file checksums.', formats: ['XAR r'] },
+      { name: 'omnizip-cpio', description: 'cpio (newc/CRC) — and the payload container inside RPMs.', formats: ['cpio rw'] },
+      { name: 'omnizip-rpm', description: 'RPM read/write with payloads over our codecs.', formats: ['RPM rw'] },
+      { name: 'omnizip-par2', description: 'PAR2 parity volumes — Reed-Solomon verification and repair.', formats: ['PAR2 rw'] },
+      { name: 'omnizip-ole', description: 'OLE compound documents — the substrate for MSI and legacy Office formats.', formats: ['OLE rw'] },
+      { name: 'omnizip-crypto', description: 'Pure-Rust AES, SHA-2, HMAC, PBKDF2, BLAKE2sp — the crypto the encrypted formats need.', formats: ['crypto'] },
+    ],
+  },
+  {
     name: 'Infrastructure',
     crates: [
       { name: 'omnizip-codecs', description: 'The shared Codec trait, CodecRegistry, CompressionLevel and error types.', formats: ['trait'] },
@@ -365,7 +416,7 @@ const crateGroups = [
 
 const architecturePoints = [
   {
-    title: 'Codec trait, implemented 18 times',
+    title: 'Codec trait, 18 implementations',
     description: 'compress(level) covers the 90% case; compress_with_options(...) exposes per-codec tunables with real types, no type-erased &dyn Any escape hatch.',
   },
   {
@@ -427,12 +478,45 @@ const guarantees = [
 
 const benchHighlights = [
   { codec: 'lzma (xz)', level: '9', output: '24.9 MB', ratio: '24.9%', encode: '1.2 MiB/s', decode: '67.0 MiB/s' },
+  { codec: 'zstd', level: '22', output: '25.3 MB', ratio: '25.3%', encode: '0.7 MiB/s', decode: '171.7 MiB/s' },
   { codec: 'lzma (xz)', level: '6', output: '26.7 MB', ratio: '26.7%', encode: '5.9 MiB/s', decode: '61.0 MiB/s' },
+  { codec: 'zstd', level: '19', output: '27.0 MB', ratio: '27.0%', encode: '0.7 MiB/s', decode: '134.9 MiB/s' },
   { codec: 'bzip2', level: '9', output: '31.5 MB', ratio: '31.5%', encode: '0.9 MiB/s', decode: '1.5 MiB/s' },
-  { codec: 'ppmd7', level: '9', output: '32.5 MB', ratio: '32.5%', encode: '1.1 MiB/s', decode: '1.1 MiB/s' },
-  { codec: 'zstd', level: '19', output: '39.2 MB', ratio: '39.2%', encode: '15.9 MiB/s', decode: '99.3 MiB/s' },
   { codec: 'lz4', level: '12', output: '53.0 MB', ratio: '53.0%', encode: '73.1 MiB/s', decode: '145.0 MiB/s' },
 ]
+
+const ozipPoints = [
+  {
+    title: 'Codecs first-class',
+    description: 'xz, zstd, gzip, bzip2, lzip and lzma-alone as single-file compressors — gzip(1)-style flags, stdin/stdout, level ranges from the registry.',
+  },
+  {
+    title: 'Archives, auto-detected',
+    description: 'c / x / t / l over tar (and every compressed tar), ZIP, cpio, 7z, RPM, RAR5 — plus RAR4 and XAR read. Format by extension or -f.',
+  },
+  {
+    title: 'Deterministic by default',
+    description: 'Same tree + same options ⇒ byte-identical archives across runs and machines. Timestamps normalized, ordering fixed.',
+  },
+  {
+    title: 'Passwords and volumes',
+    description: '-p for 7z encrypted streams/headers and RAR4/RAR5, --volume to split 7z output into parts.',
+  },
+]
+
+const ozipHelp = `$ ozip
+ozip 0.21.9 — pure-Rust codec + container CLI
+
+  ozip xz -6 file            compress (xz/zstd/gzip/bzip2/lzip/lzma)
+  ozip -d file.xz            decompress (codec from suffix/magic)
+  ozip c backup.tar.gz dir/  create archive (format by ext or -f)
+  ozip x archive.zip -C out/ extract (auto-detected)
+  ozip t archive.7z          list entry names
+  ozip l archive.rar         long listing (mode/size/mtime)
+  ozip --formats             container registry
+
+FORMATS   tar tar.gz tar.bz2 tar.xz tar.zst zip cpio 7z rpm rar5 (rw)
+          rar4 xar (read)`
 
 const cargoToml = `# Cargo.toml — pick exactly the codecs you need
 [dependencies]
