@@ -43,7 +43,7 @@
             <BaseButton as="a" :href="config.github.rust" target="_blank" rel="noopener" variant="primary" size="lg">
               View on GitHub
             </BaseButton>
-            <BaseButton as="router-link" to="/blog/2026-08-28-ozip-and-the-container-layer" variant="secondary" size="lg">
+            <BaseButton as="router-link" to="/blog/2026-08-28-omnizip-rs-0-21" variant="secondary" size="lg">
               What's new
             </BaseButton>
             <BaseButton as="a" :href="config.crates.index" target="_blank" rel="noopener" variant="ghost" size="lg">

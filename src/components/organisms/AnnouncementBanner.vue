@@ -5,7 +5,7 @@
       <p class="text-sm text-light-text dark:text-dark-text">
         <strong>omnizip-rs 0.21.11</strong> — every zstd tier optimal-parsed, Brotli q11 beats the reference, ozip speaks every format
       </p>
-      <router-link to="/blog/2026-08-28-zstd-mid-tiers-and-brotli-parity" class="cta text-sm font-medium inline-flex items-center gap-1">
+      <router-link to="/blog/2026-08-28-omnizip-rs-0-21" class="cta text-sm font-medium inline-flex items-center gap-1">
         Read the announcement
         <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
