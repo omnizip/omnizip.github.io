@@ -73,7 +73,9 @@ function parsePost(path, raw) {
 
 export const posts = Object.entries(modules)
   .map(([path, raw]) => parsePost(path, raw))
-  .sort((a, b) => b.date.localeCompare(a.date))
+  // Newest first; same-date posts tiebreak by slug descending so the
+  // later post of the day lists on top.
+  .sort((a, b) => b.date.localeCompare(a.date) || b.slug.localeCompare(a.slug))
 
 export function getPost(slug) {
   return posts.find((p) => p.slug === slug)

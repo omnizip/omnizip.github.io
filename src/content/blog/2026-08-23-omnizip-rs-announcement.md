@@ -70,7 +70,7 @@ post — measured, not estimated. What's in the table is what ran, exactly
 as measured.
 
 The headline numbers: **24.9%** best measured ratio (lzma/9 — reference-xz
-parity), **172 MiB/s** fastest decode (zstd/22), and **100%** of measured
+parity), **223 MiB/s** fastest decode (zstd/16), and **100%** of measured
 cases deterministic with clean round-trips.
 
 | Codec | Level | Output | Ratio | Encode | Decode |
@@ -79,6 +79,8 @@ cases deterministic with clean round-trips.
 | zstd | 22 | 25,331,420 B | 25.3% | 0.7 MiB/s | 171.7 MiB/s |
 | lzma (xz) | 6 | 26,666,100 B | 26.7% | 5.9 MiB/s | 61.0 MiB/s |
 | zstd | 19 | 26,991,678 B | 27.0% | 0.7 MiB/s | 134.9 MiB/s |
+| zstd | 16 | 28,186,051 B | 28.2% | 1.8 MiB/s | 222.8 MiB/s |
+| zstd | 12 | 28,237,459 B | 28.2% | 1.8 MiB/s | 216.4 MiB/s |
 | bzip2 | 9 | 31,527,197 B | 31.5% | 0.9 MiB/s | 1.5 MiB/s |
 | ppmd7 | 9 | 32,500,082 B | 32.5% | 1.1 MiB/s | 1.1 MiB/s |
 | zstd | 3 | 39,405,445 B | 39.4% | 22.8 MiB/s | 104.8 MiB/s |
@@ -101,7 +103,9 @@ cases deterministic with clean round-trips.
 
 `0.16.94: cost-measured zstd FSE table selection — zstd/3 46.5% → 39.4%, zstd/19 45.2% → 39.2%; the zstd rows were re-measured on 0.16.94.`
 
-`0.21.8/.9: the btopt price-parse DP for zstd levels 16-22 — zstd/19 39.2% → 27.0% (reference 26.9%), new zstd/22 row at 25.3%; the zstd rows were re-measured on 0.21.9. Fastest decode is now zstd/22 at 171.7 MiB/s.`
+`0.21.8/.9: the btopt price-parse DP for zstd levels 16-22 — zstd/19 39.2% → 27.0% (reference 26.9%), new zstd/22 row at 25.3%; the zstd rows were re-measured on 0.21.9.`
+
+`0.21.10/.11: ultra price weights at zstd L16 and Lazy2 (L8-12) through the optimal parser — new zstd/12 and /16 rows at 28.2% with 1.8 MiB/s encode; fastest decode is now zstd/16 at 222.8 MiB/s.`
 
 ### The roadmap fine print
 

@@ -109,7 +109,7 @@
             One crate per job
           </h2>
           <p class="text-light-muted dark:text-dark-muted max-w-2xl mx-auto">
-            The 18 codec crates are on crates.io at v0.21.9, dual licensed
+            The 18 codec crates are on crates.io at v0.21.11, dual licensed
             MIT OR Apache-2.0. The container layer and the CLI ship from the
             repository. Add exactly what you need.
           </p>
@@ -333,7 +333,7 @@ const stats = [
   { value: '31', label: 'crates in the workspace' },
   { value: '0', label: 'unsafe blocks' },
   { value: '100%', label: 'deterministic encodes' },
-  { value: 'v0.21.9', label: 'live on crates.io' },
+  { value: 'v0.21.11', label: 'live on crates.io' },
   { value: '137k+', label: 'crate downloads' },
   { value: 'MIT/Apache', label: 'dual licensed' },
 ]
@@ -481,6 +481,7 @@ const benchHighlights = [
   { codec: 'zstd', level: '22', output: '25.3 MB', ratio: '25.3%', encode: '0.7 MiB/s', decode: '171.7 MiB/s' },
   { codec: 'lzma (xz)', level: '6', output: '26.7 MB', ratio: '26.7%', encode: '5.9 MiB/s', decode: '61.0 MiB/s' },
   { codec: 'zstd', level: '19', output: '27.0 MB', ratio: '27.0%', encode: '0.7 MiB/s', decode: '134.9 MiB/s' },
+  { codec: 'zstd', level: '16', output: '28.2 MB', ratio: '28.2%', encode: '1.8 MiB/s', decode: '222.8 MiB/s' },
   { codec: 'bzip2', level: '9', output: '31.5 MB', ratio: '31.5%', encode: '0.9 MiB/s', decode: '1.5 MiB/s' },
   { codec: 'lz4', level: '12', output: '53.0 MB', ratio: '53.0%', encode: '73.1 MiB/s', decode: '145.0 MiB/s' },
 ]
@@ -505,7 +506,7 @@ const ozipPoints = [
 ]
 
 const ozipHelp = `$ ozip
-ozip 0.21.9 — pure-Rust codec + container CLI
+ozip 0.21.11 — pure-Rust codec + container CLI
 
   ozip xz -6 file            compress (xz/zstd/gzip/bzip2/lzip/lzma)
   ozip -d file.xz            decompress (codec from suffix/magic)

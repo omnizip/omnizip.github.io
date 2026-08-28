@@ -9,8 +9,8 @@ stats:
     label: archive formats read/write
   - value: 26.99%
     label: "zstd/19 on enwik8 — reference is 26.94%"
-  - value: v0.21.9
-    label: released today
+  - value: v0.21.11
+    label: current release
 ---
 
 ## What happened since the launch
