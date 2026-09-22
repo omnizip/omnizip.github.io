@@ -34,11 +34,11 @@
           <div class="stat-label">Archive Formats</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">8+</div>
-          <div class="stat-label">Compression Algorithms</div>
+          <div class="stat-value">8 + 18</div>
+          <div class="stat-label">Algorithms (Ruby core + Rust engine)</div>
         </div>
         <div class="stat-card">
-          <div class="stat-value">3540+</div>
+          <div class="stat-value">3800+</div>
           <div class="stat-label">Tests (100% pass)</div>
         </div>
         <div class="stat-card">
@@ -175,6 +175,7 @@ onMounted(() => {
 
 const features = [
   { title: 'Pure Ruby', description: 'No native dependencies. Works on MRI, JRuby, TruffleRuby' },
+  { title: 'Prebuilt Rust Engine', description: 'Platform gems ship the omnizip-rs cdylib — acceleration with zero compilation; OMNIZIP_NO_RUST=1 forces pure Ruby' },
   { title: '7-Zip Format', description: 'Full read/write with solid compression, multi-volume' },
   { title: 'XZ Format', description: 'Complete LZMA2 support with XZ Utils compatibility' },
   { title: 'RAR Support', description: 'RAR4 read all/write some, RAR5 full read/write' },
@@ -184,6 +185,9 @@ const features = [
   { title: 'PAR2 Archives', description: 'Reed-Solomon error correction and recovery' },
   { title: 'AES-256 Encryption', description: 'Password protection with PBKDF2 key derivation' },
   { title: 'Parallel Processing', description: 'Multi-threaded compression using Ractors' },
+  { title: 'Compression Profiles', description: 'Content-class detection picks the codec automatically' },
+  { title: 'Format Converter', description: 'Convert archives between formats, single or batch' },
+  { title: 'Verify & Repair', description: 'Archive verification, structural repair, PAR2 create/verify/repair' },
 ]
 
 const algorithms = [
@@ -195,6 +199,10 @@ const algorithms = [
   { name: 'Deflate64', desc: '64KB window' },
   { name: 'Zstandard', desc: 'Modern fast' },
   { name: 'Store', desc: 'No compression' },
+  { name: 'Brotli', desc: 'Rust engine' },
+  { name: 'LZ4', desc: 'Rust engine' },
+  { name: 'Snappy', desc: 'Rust engine' },
+  { name: 'ZPAQ / GLZA / FLAC / FSST', desc: 'Rust engine' },
 ]
 
 const filters = [
@@ -242,7 +250,11 @@ writer.write
 # === One-liners ===
 Omnizip.compress_file('input.txt', 'output.zip')
 Omnizip.extract_archive('archive.zip', 'output/')
-entries = Omnizip.list_archive('archive.zip')`
+entries = Omnizip.list_archive('archive.zip')
+
+# === Rust engine (automatic where a platform gem exists) ===
+Omnizip::Implementations::Rust::Library.instance
+  .compress('zstd', data, 6)   # OMNIZIP_NO_RUST=1 to force pure Ruby`
 </script>
 
 <style scoped>
